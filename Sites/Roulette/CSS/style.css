@@ -1,0 +1,20 @@
+body{
+    background-color: green;
+}
+#main{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+#ruota{
+    background-color: aqua;
+    width: 30vw;
+}
+#routa_img{
+    max-width: 100%;
+    height: auto;
+}
+#tabella{
+    background-color: brown;
+    width: 70vw;
+}
