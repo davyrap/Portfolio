@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La tombola di rap</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="shortcut icon" href="assets/favicon_tombola.ico" type="image/x-icon">
+    <script src="JS/script.js"></script>
+    <audio src="assets/check.mp3" id="audio1"></audio>
+    <audio src="assets/lang.mp3" id="audio2"></audio>
+    <audio src="assets/confirm.mp3" id="audio3"></audio>
+    <audio src="assets/ambo.mp3" id="ambo"></audio>
+    <audio src="assets/terno.mp3" id="terno"></audio>
+    <audio src="assets/quaterna.mp3" id="quaterno"></audio>
+    <audio src="assets/cinquina.mp3" id="cinquina"></audio>
+    <audio src="assets/tombola.mp3" id="tombola"></audio>
+</head>
+<body>
+    <div id="select">
+        <h1>Scegli le tue cartelle</h1>
+        <table id="chbx">
+            <script>creaBTN();</script>
+        </table>
+        <button type="button" id="begin" onclick="start()" disabled>Gioca</button>
+        <div id="lingua">
+            <h3 id="lang">Dialetto</h3>
+            <input type="checkbox" name="Lingua" id="lng" onclick="cambialingua()">
+        </div>
+    </div>
+    <div id="soldi">
+        <h1 id="title">Imposta il costo unitario per cartella</h1>
+        <div id="inter">
+            <h2>Inserisci qui l'importo:&nbsp&nbsp</h2>
+            <input type="number" onfocusout="enable()" name="Costo cartella" id="txb_co">
+        </div>
+        <button id="costo" onclick="costo()" disabled>Imposta e continua</button>
+    </div>
+    <div id="gioco">
+        <div id="left">
+            <table id="latabella">
+            <script>inizializza();</script>
+            </table>
+         <h2 id="smorfia">
+            Smorfia
+         </h2>
+        </div>
+        <div id="right">
+            <div id="vol">
+                <input type="checkbox" name="suono" id="volume" class="bx" onclick="cambiavol()" checked>
+                <h3 id="sound">Volume</h3>
+            </div>
+            <div id="div_singola">
+                <h1>Ecco la tua cartella</h1>
+                <table id="cartella_singola">
+                <script>stampa();</script>
+                </table>
+            </div>
+            </table>
+            <table id="tbl_right">
+                <tr>
+                    <td rowspan="2"><button id='estrai' onclick='estrai()'>Estrai</button></td>
+                    <td><button id='show' onclick='show()'>Mostra cartella</button></td>
+                </tr>
+                <tr>
+                    <td><input type="number" name="Scegli cartella" id="txb_id"></td>
+                </tr>
+            </table>
+            <table id="right_under">
+                <tr>
+                    <th>Ambo</th>
+                    <th>Terno</th>
+                    <th>Quaterno</th>
+                    <th>Cinquina</th>
+                    <th>Tombola</th>
+                </tr>
+                <tr>
+                    <td id="e1">€0</td>
+                    <td id="e2">€0</td>
+                    <td id="e3">€0</td>
+                    <td id="e4">€0</td>
+                    <td id="e5">€0</td>
+                </tr>
+                <tr>
+                    <td id="a1">N/A</td>
+                    <td id="a2">N/A</td>
+                    <td id="a3">N/A</td>
+                    <td id="a4">N/A</td>
+                    <td id="a5">N/A</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
