@@ -1,0 +1,82 @@
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a{
+    font-size: 3rem;
+    color: orange;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 4vw 7vw;
+    border-radius: 3vh;
+    margin: 5%;
+    background-color: black;
+    border: solid lightgray 3px;
+}
+a:hover {
+    color: gold;
+    background-size: cover;
+    border-color: black;
+}
+.barraP{
+    background-color: orange;
+    height: 5vh;
+    border-radius: 5vh;
+    text-align: center;
+}
+.barraV{
+    background-color: lightgray;
+    width: 80%;
+    height: 5vh;
+    border-radius: 5vh;
+}
+#barBlend{
+    width: 58%;
+}
+#barCpp{
+    width: 80%;
+}
+#barCSS{
+    width: 60%;
+}
+#barHTML{
+    width: 75%;
+}
+#barJS{
+    width: 90%;
+}
+.container{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 4.5vh;
+    text-align: center;
+}
+.container h3{
+    width: 20%;
+}
+#link_cont{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    align-content: center;
+}
+#link_roulette{
+    background-color: green;
+    background-image: url('../Sites/Roulette/Assets/Roulette-Regole.png');
+}
+#link_tombola{
+    background-image: url('../Assets/tombola.png');
+}
+#link_KO{
+    background-image: url('../Assets/ko.png');
+}
+.subtitle{
+    font-size: 8vh;
+    text-align: center;
+    margin-bottom: 15vh;
+}
