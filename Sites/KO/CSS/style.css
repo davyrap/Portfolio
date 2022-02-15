@@ -1,0 +1,162 @@
+*{
+    margin: 0;
+    color: #F4EDED;
+}
+#back{
+    width: 33vw;
+    font-size: 1.8rem;
+    margin-bottom: 2.5vw;
+    color: black;
+}
+body{
+    background-color: #36827F;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#btnP, #btnM{
+    color: black;
+    font-size: 2.5rem;
+    width: 3.5vw;
+    min-width: 3rem;
+    font-weight: 700;
+    background-color: #F4EDED;
+}
+#btn_holder{
+    display: flex;
+    flex-direction: column;
+}
+#btn_holder button{
+    background-color: #343f80;
+    color: #F4EDED;
+    margin-bottom: 5vw;
+    width: 60vw;
+}
+#btn_sino, #vol_sino{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#cbx_ripeti, #cbx_vol{
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+}
+#countdown{
+    display: flex;
+    padding-bottom: 40%;
+}
+#countdown p{
+    font-size: 5rem;
+    font-weight: 500;
+    border: solid;
+    height: max-content;
+    width: 6rem;
+    border-radius: 20px;
+}
+#choose{
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+#credits{
+    display: none;
+    font-size: 2rem;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+#domanda, #main{
+    text-align: center;
+    font-size: 2.3rem;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20vh;
+}
+#domanda{
+    display: none;
+}
+#domanda h2{
+    font-size: 2.75rem;
+}
+#footer{
+    margin: 0;
+    background-color: #343f80;
+    padding-bottom: 1vw;
+    padding-top: 1vw;
+    bottom:0;
+    left:0;
+    width:100%;
+    text-align: center;
+}
+#footer p{
+    margin: 0;
+    font-size: 1rem;
+    height: 100%;
+}
+#generato{
+    display: flex;
+    font-size: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+    font-size: 1.5rem;
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.5vw;
+}
+#generato p{
+    margin-bottom: 4vw;
+    margin-right: 3vw;
+    font-size: 2rem;
+}
+#lbl_domanda{
+    margin-bottom: 5vw;
+}
+hr{
+    background-color: #F4EDED;
+    border-color: #F4EDED;
+}
+#listaP{
+    display: flex;
+    flex-direction: column;
+    border: solid 3px;
+}
+#listaP hr{
+    color: #ce41ea;
+}
+#listaP p{
+    color: #F4EDED;
+    font-size: 2rem;
+}
+#main h1{
+    margin: 0;
+}
+#main h2{
+    font-size: 1.7rem;
+    margin-bottom: 5vw;
+}
+#play{
+    font-size: 1.75rem;
+    border: none;
+    padding: 1.75%;
+    border-radius: 25%;
+    background-color: #343f80;
+    margin-bottom: 5%;
+    height: 10vw;
+}
+.scelta{
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2rem;
+}
+.split{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+table{
+    margin-bottom: 5vh;
+    border: solid;
+}

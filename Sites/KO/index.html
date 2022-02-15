@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armagheddon</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="shortcut icon" href="Assets/favicon.png" type="image/x-icon">
+    <script src="JS/script.js"></script>
+    <audio src="Assets/correct.mp3" id="s.correct"></audio>
+    <audio src="Assets/wrong.mp3" id="s.wrong"></audio>
+</head>
+<body>
+    <div id="main">
+        <h1>KO: the game</h1>
+        <h2>Rispondi correttamente alle domande per rimanere in gara</h2>
+        <button id="play" onclick="avvia()">
+            Inizia a giocare
+        </button>
+        <div id="impostazioni">
+            <table>
+                <tr>
+                    <td>Secondi per domanda:</td>
+                    <td>
+                        <div id="choose">
+                            <button id="btnM" onclick="time('M')"> - </button> &nbsp
+                            <p id="quantity">15</p> &nbsp
+                            <button id="btnP" onclick="time('P')">+</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr><td><!--Spazio vuoto--></td></tr>
+                <tr>
+                    <td>Riproponi domande indovinate: &nbsp</td>
+                    <td id="btn_sino"><input type="checkbox" name="Spunta di selezione" id="cbx_ripeti" onchange="rido()">&nbsp<p id="siNo">No</p></td>
+                </tr>
+                <tr><td><!--Spazio vuoto--></td></tr>
+                <tr>
+                    <td>Suoni: </td>
+                    <td id="vol_sino"><input type="checkbox" name="punta di selezione" id="cbx_vol" onchange="mute()" checked>&nbsp;<p id="lbl_vol">Si</p></td>
+                </tr>
+            </table>
+        </div>
+        <div id="credits">
+            Complimenti al vincitore! <br>
+            Realizzare questo giochino è stato un vero piacere e spero che sia stato un piacere anche per voi comporre le domande a cui abbiamo risposto. <br>
+            Al prossimo KO! &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:)
+        </div>
+    </div>
+    <!--Fine prima pagina-->
+    <div id="domanda">
+        <h1 id="lbl_nome">È stato scelto: </h1>
+        <hr>
+        <h2 id="lbl_domanda"></h2>
+        <div class="split">
+            <div id="countdown">
+                <p id="cNum">0</p>
+            </div>
+            <div id="btn_holder">
+            <button id="b1" class="scelta" onclick="check(1)"></button>
+            <button id="b2" class="scelta" onclick="check(2)"></button>
+            <button id="b3" class="scelta" onclick="check(3)"></button>
+            <button id="b4" class="scelta" onclick="check(4)"></button>
+            </div>
+            <div id="listaP"><script>listap();</script></div>
+        </div>
+        
+        <button id="back" onclick="estrai()">Prossima domanda</button>
+    </div>
+        <!--Fine pagina domanda-->
+    <div id="footer">
+        <p>Sito e codice realizzato da Davide Rapisarda.</p>
+        <p>&#169 Tutti i diritti riservati.</p>
+    </div>
+</body>
+</html>
