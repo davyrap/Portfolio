@@ -19,7 +19,8 @@ body{
 }
 .green{
     background-color: greenyellow;
-    height: 7.6rem;
+    padding-top: 2.6rem;
+    padding-bottom: 2.6rem;
 }
 #main{
     display: flex;
@@ -33,7 +34,8 @@ body{
     height: auto;
 }
 #tabella{
-    width: 70vw;
+    width: 69vw;
+    margin-left: 1vw;
 }
 .red{
     background-color: red;
