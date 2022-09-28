@@ -75,6 +75,12 @@ a:hover {
 #link_KO{
     background-image: url('../Assets/ko.png');
 }
+#link_domandeDiM{
+    background-image: url(../Assets/QDFaDiM.png);
+}
+#link_domandeDiM:hover{
+    color: #00000000;
+}
 .subtitle{
     font-size: 8vh;
     text-align: center;

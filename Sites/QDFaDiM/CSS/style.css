@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+body{
+    text-align: center;
+    background-color: #4f5d75;
+}
+.btnHolder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#combo{
+    font-size: 5rem;
+    margin-top: 5rem;
+}
+.label{
+    width: 25rem;
+    height: 10rem;
+}
+#mainBTN{
+    padding: 1rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+    border: 5px #FFFFFF solid;
+    border-radius: .8rem;
+    background-color: #2D3142;
+    font-size: 10rem;
+    color: #BFC0C0;
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+}
+#seeTrophies{
+    background-image: url(../assets/trophies.png);
+    background-size: cover;
+    background-color: #00000000;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 5rem;
+    padding: 3rem;
+    margin-top: 3rem;
+}
+#stopwatch{
+    margin-top: 1.5rem;
+    font-size: 6rem;
+    color: #FFFFFF;
+}
+.title{
+    margin-top: 0;
+    font-size: 6.5rem;
+    color: #ef8354;
+}
+.TLtitle{
+    color: #ef8354;
+    font-size: 3rem;
+    margin-top: 1rem;
+}
+.TLbody{
+    color: #FFFFFF;
+    font-size: 2rem;
+}
+#titleHolder{
+    display: flex;
+    justify-content: space-between;
+}
+#trophyLabel{
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#trophyLabel h2{
+    font-size: 2.5rem;
+    color: #ef8354;
+}
+#trophyLabel p{
+    font-size: 2rem;
+    color: #2D3142;
+}
+#trophyPage{
+    position: fixed;
+    display: none; /* Nascosto di defalut */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.9);
+    cursor: pointer; /* Aggiunge la manina col dito */
+}
