@@ -10,10 +10,14 @@
     <title>QDFaDiM?</title>
 </head>
 <body>
-    <div>
+    <div id="intro">
+        <p class="bigBTN" onclick="initialize()">Inizia lezione</p>
+    </div>
+    <div id="mainGame">
         <div id="titleHolder">
             <div class="label">
-                <button id="seeTrophies" onclick="trophyPageOn()"></button>
+                <button class="upperButtons" id="seeTrophies" onclick="trophyPageOn()"></button>
+                <button class="upperButtons" id="stopTimer" onclick="endgame()"></button>
             </div>
             <h1 class="title">QDFaDiM?</h1>
             <div class="label" id="trophyLabel">
@@ -22,8 +26,8 @@
             </div>
         </div>
         <div class="btnHolder">
-            <button id="mainBTN" onclick="add1()"></button>
-            <p id="stopwatch"><script>initialize()</script></p>
+            <button id="mainBTN" onclick="add1()">+</button>
+            <p id="stopwatch"></p>
         </div>
         <div id="combo"></div>
         <!--combo è il placeholder del testo "combo x2 etc"-->
@@ -32,6 +36,14 @@
         <div id="trophyPage" onclick="trophyPageOff()">
             <h1 class="title">I miei trofei</h1>
             <div id="trophyList"><script>buildTrophyList()</script></div>
+        </div>
+    </div>
+    <div>
+        <div id="score">
+            <p class="title" id="titoloFine"></p>
+            <p class="TLbody" id="bodyFine"></p>
+            <p class="bigBTN" id="retry" onclick="reload()">Prossima lezione</p>
+        </div>    
         </div>
     </div>
 </body>

@@ -1,7 +1,9 @@
 var minuti, secondi, ore, counter, interval, lastPressed, 
-comboCount, secondiCombo, nascondiTrofeo, secondiTrofeo, numTrofei;
+comboCount, secondiCombo, nascondiTrofeo, secondiTrofeo;
+var numTrofei = 10;
+//^ lo inizializzo fuori perchè, dato che initialize() accade dopo buildTrophyList(), non sarebbe inizializzata
 var audio;
-var combo10Earned;
+var combo10Earned, counter25Earned, counter100Earned, gameOver;
 
 function initialize()
 {
@@ -12,18 +14,16 @@ function initialize()
     nascondiTrofeo = 5;
     lastPressed = 11;
     interval = 1000;
-    numTrofei = 5;  //numero di trofei presenti nel gioco
-    combo10Earned = counter25Earned = false;
-    document.getElementById("mainBTN").innerHTML = "+";
+    combo10Earned = counter25Earned = counter100Earned = gameOver = false;
     interval = setInterval(writeTime, interval);    //faccio partire l'intervallo di 1 secondo
     audio = document.getElementById("trophy");
-    document.getElementById("trophyLabel").style.visibility = "hidden";    //nascondo la label dei trofei
+    document.getElementById("intro").style.display = "none";
     writeTime();
 }
 
+let display;
 function writeTime()
 {
-    let display;
     //aggiorno il timer
     secondi++;
     if(secondi >= 60)
@@ -84,11 +84,13 @@ function add1()
                 document.getElementById("combo").style.color = "#BC3908";
                 document.getElementById("combo").style.fontSize = "6.5rem";
             break;
+            case 10:
+                checkForTrophies();
+            break;
             default:    //da qui in poi li voglio tutti così
                 document.getElementById("combo").style.color = "#F6AA1C";
                 document.getElementById("combo").style.fontSize = "7.5rem";
         }
-        checkForTrophies();
     }
     lastPressed = 0;
 }
@@ -101,16 +103,24 @@ function checkForTrophies()
         combo10Earned = true;
         showTrophy(1);
     }
-    if(counter == 25)
+    if(counter == 25 && !counter25Earned)
     {
         audio.play();
+        counter25Earned = true;
         showTrophy(2);
     }
 
-    if(counter == 100)
+    if(counter == 100 && !counter25Earned)
     {
         audio.play();
+        counter100Earned = true;
         showTrophy(4);
+    }
+
+    if(endgame && counter == 0)
+    {
+        audio.play();
+        showTrophy(9);
     }
 }
 
@@ -139,6 +149,13 @@ function showTrophy(code){
             document.getElementById("t3").innerHTML = "100 domande?!?!?";
             document.getElementById("b3").innerHTML = "Forse a questo punto ci colpa il prof";
         break;
+        case 9:
+            document.getElementById("trophyTitle").innerHTML = "ERROR 404";
+            document.getElementById("trophyBody").innerHTML = "Nessuna domanda trovata.";
+            document.getElementById("t0").innerHTML = "ERROR 404";
+            document.getElementById("b0").innerHTML = "Nessuna domanda trovata.";
+            //lo metto nel primo perchè tanto è l'unico
+        break;
     }
     document.getElementById("trophyLabel").style.visibility = "visible";
     secondiTrofeo = 0;
@@ -148,10 +165,18 @@ function trophyPageOn()
 {
     document.getElementById("trophyPage").style.display = "block";
     checkForTrophies
+    if(gameOver)
+    {
+        document.getElementById("score").style.display = "none";
+    }
 }
 function trophyPageOff()
 {
     document.getElementById("trophyPage").style.display = "none";
+    if(gameOver)
+    {
+        document.getElementById("score").style.display = "block";
+    }
 }
 
 function buildTrophyList()
@@ -159,6 +184,22 @@ function buildTrophyList()
     for(var i = 0; i < numTrofei; i++)
     {
         document.writeln("<p class='TLtitle'id='t" + i + "'>Trofeo nascosto</p>");
-        document.writeln("<p class='TLbody' id='b" + i + "'>Descrizione trofeo</p>");
+        document.writeln("<p class='TLbody' id='b" + i + "'>???</p>");
     }
+}
+
+function endgame()
+{
+    gameOver = true;
+    clearInterval(interval);    //interrompo la conta dei secondi
+    document.getElementById("titoloFine").innerHTML = ("Lezione terminata!");
+    document.getElementById("bodyFine").innerHTML = ("Ivan ha chiesto " + counter + " domande in " + display);
+    document.getElementById("score").style.display = "block";
+    document.getElementById("stopTimer").disabled = "true";
+    checkForTrophies();     //vedo se ho ottenuto il trofeo 9
+}
+
+function reload()
+{
+    location.reload();
 }

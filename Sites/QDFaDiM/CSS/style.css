@@ -2,9 +2,27 @@
     margin: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.bigBTN{
+    font-size: 5rem;
+    margin-top: 3rem;
+    color: #ef8354;
+    border: solid #2D3142 .5rem;
+    background-color: #4f5d75;
+    border-radius: 10rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+}
+.bigBTN:hover{
+    background-color: #2D3142;
+    border-color: #4f5d75;
+    cursor: pointer;
+}
 body{
     text-align: center;
     background-color: #4f5d75;
+}
+#bodyFine{
+    font-size: 4rem;
 }
 .btnHolder{
     display: flex;
@@ -15,9 +33,24 @@ body{
     font-size: 5rem;
     margin-top: 5rem;
 }
+#intro{
+    position: absolute;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 5rem;
+    width: 75vw;
+    height: 50vh;
+    margin-left: 13vw;
+    margin-top: 20vh;
+}
+#intro p{
+    margin-top: 7.5rem;
+}
 .label{
     width: 25rem;
     height: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #mainBTN{
     padding: 1rem;
@@ -32,15 +65,32 @@ body{
     display: flex;
     justify-content: center;
 }
+#mainBTN:hover{
+    border-color: #ef8354;
+}
+#mainBTN:active{
+    /* quando sto effettivamente cliccando il tasto */
+    color: #ef8354;
+}
+#mainGame{
+    width: 100%;
+    height: 100%;
+}
+#score{
+    display: none;
+    width: 75%;
+    height: 60vh;
+    margin-left: 13.5%;
+    background-color: #FFFFFF;
+    position: absolute;
+    bottom: 20vh;
+    border-radius: 5rem;
+}
 #seeTrophies{
     background-image: url(../assets/trophies.png);
-    background-size: cover;
-    background-color: #00000000;
-    width: 5rem;
-    height: 5rem;
-    border-radius: 5rem;
-    padding: 3rem;
-    margin-top: 3rem;
+}
+#stopTimer{
+    background-image: url(../assets/stopButton.png);
 }
 #stopwatch{
     margin-top: 1.5rem;
@@ -58,19 +108,24 @@ body{
     margin-top: 1rem;
 }
 .TLbody{
-    color: #FFFFFF;
+    color: #4f5d75;
     font-size: 2rem;
+}
+#titoloFine{
+    font-size: 8rem;
 }
 #titleHolder{
     display: flex;
     justify-content: space-between;
 }
 #trophyLabel{
+    visibility: hidden;
     background-color: #FFFFFF;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    border: solid;
 }
 #trophyLabel h2{
     font-size: 2.5rem;
@@ -81,14 +136,28 @@ body{
     color: #2D3142;
 }
 #trophyPage{
-    position: fixed;
+    position: absolute;
     display: none; /* Nascosto di defalut */
     width: 100%;
-    height: 100%;
+    height: fit-content;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.9);
     cursor: pointer; /* Aggiunge la manina col dito */
+}
+.upperButtons{
+    background-size: cover;
+    background-color: #00000000;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 5rem;
+    border: .25rem solid;
+    padding: 3rem;
+    margin-top: 3rem;
+}
+.upperButtons:hover{
+    cursor: pointer;
+    background-color: #ef8354;
 }
