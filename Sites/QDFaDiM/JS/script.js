@@ -4,7 +4,7 @@ var numTrofei = 10;
 var combo, tBody, tTitle, tLabel, inc;
 //^ lo inizializzo fuori perchè, dato che initialize() accade dopo buildTrophyList(), non sarebbe inizializzata
 var audio;
-var combo10Earned, counter25Earned, counter100Earned, gameOver;
+var combo10Earned, counter25Earned, fastStartEarned,  counter100Earned, combo100Earned, inactivityEarned, gameOver;
 
 function initialize()
 {
@@ -13,9 +13,10 @@ function initialize()
     comboCount = 1;
     secondiCombo = 2;
     nascondiTrofeo = 5;
-    lastPressed = 11;
+    lastPressed = -1;
     interval = 1000;
-    combo10Earned = counter25Earned = counter100Earned = gameOver = false;
+    combo10Earned = counter25Earned = fastStartEarned = counter100Earned = combo100Earned = inactivityEarned
+    = gameOver = false;
     interval = setInterval(writeTime, interval);    //faccio partire l'intervallo di 1 secondo
     audio = document.getElementById("trophy");
     document.getElementById("intro").style.display = "none";
@@ -53,6 +54,7 @@ function writeTime()
     document.getElementById("stopwatch").innerHTML = display;   //aggiorno il display
 
     lastPressed++;  //aggiungo secondi per la combo
+    console.log(lastPressed);
     if(lastPressed > secondiCombo)
     {
         comboCount = 1;
@@ -69,6 +71,8 @@ function writeTime()
     if (hideIncTimer >= hideInc) {
         inc.style.visibility = "hidden";
     }
+
+    checkForTrophies()
 }
 
 function add1()
@@ -83,12 +87,13 @@ function add1()
     inc.style.animation = null;
     hideIncTimer = 0;
 
-    checkForTrophies();     //per i trofei di counter
     if(lastPressed <= secondiCombo)
     {
         printCombo();
     }
     lastPressed = 0;
+
+    checkForTrophies();     //per i trofei
 }
 
 function printCombo()
@@ -119,7 +124,6 @@ function printCombo()
         case 10:
             combo.style.color = "purple";
             combo.style.fontSize = "6.5rem";
-            checkForTrophies();
         break;
         default:    //da qui in poi li voglio tutti così
             combo.style.color = "purple";
@@ -133,32 +137,53 @@ function checkForTrophies()
     {
         audio.play();
         combo10Earned = true;
-        showTrophy(1);
+        showTrophy(0);
     }
     if(counter == 25 && !counter25Earned)
     {
         audio.play();
         counter25Earned = true;
+        showTrophy(1);
+    }
+
+    if(counter == 5 && secondi < 5 && !fastStartEarned)
+    {
+        audio.play();
+        fastStartEarned = true;
         showTrophy(2);
     }
 
-    if(counter == 100 && !counter25Earned)
+    if(counter == 100 && !counter100Earned)
     {
         audio.play();
         counter100Earned = true;
+        showTrophy(3);
+    }
+
+    if(comboCount == 100 && !combo100Earned)
+    {
+        audio.play();
+        combo100Earned = true;
         showTrophy(4);
     }
 
-    if(endgame && counter == 0)
+    if (lastPressed == 600 && !inactivityEarned) {
+        audio.play();
+        inactivityEarned = true;
+        showTrophy(5);
+    }
+
+    if(gameOver && counter == 0)
     {
         audio.play();
-        showTrophy(9);
+        showTrophy(8);
     }
+    console.log("nada");
 }
 
 function showTrophy(code){
     switch (code) {
-        case 1:     //combo x10
+        case 0:     //combo x10
             //imposto i valori per il pop-up
             tTitle.innerHTML = "Ora si ragiona";    //titolo
             tBody.innerHTML = "Ottieni una combo x10 di domande";   //contenuto
@@ -166,25 +191,40 @@ function showTrophy(code){
             document.getElementById("t0").innerHTML = "Ora si ragiona"; //titolo
             document.getElementById("b0").innerHTML = "Ottieni una combo x10 di domande";   //contenuto
         break;
-        case 2:
+        case 1:
             tTitle.innerHTML = "Voglia di imparare";
             tBody.innerHTML = "Fai 25 domande";
             document.getElementById("t1").innerHTML = "Voglia di imparare";
             document.getElementById("b1").innerHTML = "Fai 25 domande";
         break;
-        case 3:
-
+        case 2:
+            tTitle.innerHTML = "Partenza col botto";
+            tBody.innerHTML = "Fai 5 domande nei primi 5 secondi di lezione";
+            document.getElementById("t2").innerHTML = "Partenza col botto";
+            document.getElementById("b2").innerHTML = "Fai 5 domande nei primi 5 secondi di lezione";
         break;
-        case 4:
+        case 3:
             tTitle.innerHTML = "100 domande?!?!?";
             tBody.innerHTML = "Forse a questo punto ci colpa il prof";
             document.getElementById("t3").innerHTML = "100 domande?!?!?";
             document.getElementById("b3").innerHTML = "Forse a questo punto ci colpa il prof";
         break;
-        case 9:
-            tTitle.innerHTML = "ERROR 404";
+        case 4:
+            tTitle.innerHTML = "Solo per il meme";
+            tBody.innerHTML = "Ottieni una combo x100 (occhio a quel mouse!)";
+            document.getElementById("t4").innerHTML = "Solo per il meme";
+            document.getElementById("b4").innerHTML = "Ottieni una combo x100 (occhio a quel mouse!)";
+        break;
+        case 5:
+            tTitle.innerHTML = "Cioè nel senso posso?";
+            tBody.innerHTML = "Non fare domande per BEN 10 MINUTI";
+            document.getElementById("t5").innerHTML = "Cioè nel senso posso?";
+            document.getElementById("b5").innerHTML = "Non fare domande per BEN 10 MINUTI";
+        break;
+        case 8:
+            tTitle.innerHTML = "?!?ERROR 404?!?";
             tBody.innerHTML = "Nessuna domanda trovata.";
-            document.getElementById("t0").innerHTML = "ERROR 404";
+            document.getElementById("t0").innerHTML = "?!?ERROR 404?!?";
             document.getElementById("b0").innerHTML = "Nessuna domanda trovata.";
             //lo metto nel primo perchè tanto è l'unico
         break;
@@ -199,7 +239,6 @@ function showTrophy(code){
 function trophyPageOn()
 {
     document.getElementById("trophyPage").style.display = "block";
-    //checkForTrophies
     if(gameOver)
     {
         document.getElementById("score").style.display = "none";
