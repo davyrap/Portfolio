@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/mobile.css">
     <audio src="assets/TrophySound.mp3" id="trophy"></audio>
     <script src="JS/script.js"></script>
     <title>QDFaDiM?</title>
@@ -25,19 +26,27 @@
                 <p id="trophyBody">Contenuto</p>
             </div>
         </div>
+
         <div class="btnHolder">
             <button id="mainBTN" onclick="add1()">+</button>
             <p id="stopwatch"></p>
         </div>
+
+        <p id="increment">+1</p>
+
         <div id="combo"></div>
         <!--combo è il placeholder del testo "combo x2 etc"-->
     </div>
+
+
     <div>
         <div id="trophyPage" onclick="trophyPageOff()">
             <h1 class="title">I miei trofei</h1>
             <div id="trophyList"><script>buildTrophyList()</script></div>
         </div>
     </div>
+
+
     <div>
         <div id="score">
             <p class="title" id="titoloFine"></p>

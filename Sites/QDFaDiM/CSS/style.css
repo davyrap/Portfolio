@@ -4,11 +4,11 @@
 }
 .bigBTN{
     font-size: 5rem;
-    margin-top: 3rem;
     color: #ef8354;
     border: solid #2D3142 .5rem;
     background-color: #4f5d75;
     border-radius: 10rem;
+    margin-top: 3rem;
     margin-left: 15rem;
     margin-right: 15rem;
 }
@@ -33,6 +33,21 @@ body{
     font-size: 5rem;
     margin-top: 5rem;
 }
+#increment{
+    color: #FFFFFF;
+    font-size: 4.5rem;
+    position: absolute;
+    right: 32vw;
+    top: 40vh;
+    animation: increment 2s ease-out;
+    visibility: hidden;
+}
+@keyframes increment {
+    0%{color: #00000000;}
+    50% {color: #FFFFFF;}
+    100%{top: 20vh; color: #00000000;}
+}
+
 #intro{
     position: absolute;
     background-color: rgba(255,255,255,0.5);
@@ -41,7 +56,16 @@ body{
     height: 50vh;
     margin-left: 13vw;
     margin-top: 20vh;
+    animation-name: intro;
+    animation-duration: .75s;
+    animation-timing-function: ease;
 }
+@keyframes intro {
+    0% {scale: 0%;}
+    75% {scale: 125%;}
+    100% {scale: 100%;}
+}
+
 #intro p{
     margin-top: 7.5rem;
 }
@@ -65,16 +89,20 @@ body{
     display: flex;
     justify-content: center;
 }
+
 #mainBTN:hover{
     border-color: #ef8354;
 }
 #mainBTN:active{
     /* quando sto effettivamente cliccando il tasto */
     color: #ef8354;
+    scale: 90%;
 }
 #mainGame{
+    position: fixed;    /* così quando scrollo rimane sempre fermo */
     width: 100%;
     height: 100%;
+    z-index: -1;
 }
 #score{
     display: none;
@@ -85,10 +113,15 @@ body{
     position: absolute;
     bottom: 20vh;
     border-radius: 5rem;
+    animation-name: intro;
+    animation-duration: .75s;
+    animation-timing-function: ease;
 }
 #seeTrophies{
-    background-image: url(../assets/trophies.png);
+    /* background-image: url(../assets/trophies.png); */
+    background-image: url(../assets/Trofei.png);
 }
+
 #stopTimer{
     background-image: url(../assets/stopButton.png);
 }
@@ -126,7 +159,9 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     border: solid;
+    animation: intro 1s;
 }
+
 #trophyLabel h2{
     font-size: 2.5rem;
     color: #ef8354;
@@ -146,7 +181,14 @@ body{
     bottom: 0;
     background-color: rgba(0,0,0,0.9);
     cursor: pointer; /* Aggiunge la manina col dito */
+    animation-name: tPage;
+    animation-timing-function: ease-out;
+    animation-duration: .25s;
 }
+@keyframes tPage{
+    0%{margin-top: 100vh;}
+}
+
 .upperButtons{
     background-size: cover;
     background-color: #00000000;
@@ -159,5 +201,7 @@ body{
 }
 .upperButtons:hover{
     cursor: pointer;
-    background-color: #ef8354;
+}
+.upperButtons:active{
+    scale: 90%;
 }

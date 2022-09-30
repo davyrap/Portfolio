@@ -1,6 +1,7 @@
 var minuti, secondi, ore, counter, interval, lastPressed, 
-comboCount, secondiCombo, nascondiTrofeo, secondiTrofeo;
+comboCount, secondiCombo, nascondiTrofeo, secondiTrofeo, hideInc, hideIncTimer;
 var numTrofei = 10;
+var combo, tBody, tTitle, tLabel, inc;
 //^ lo inizializzo fuori perchè, dato che initialize() accade dopo buildTrophyList(), non sarebbe inizializzata
 var audio;
 var combo10Earned, counter25Earned, counter100Earned, gameOver;
@@ -18,6 +19,12 @@ function initialize()
     interval = setInterval(writeTime, interval);    //faccio partire l'intervallo di 1 secondo
     audio = document.getElementById("trophy");
     document.getElementById("intro").style.display = "none";
+    combo = document.getElementById("combo");
+    tTitle = document.getElementById("trophyTitle");
+    tBody = document.getElementById("trophyBody");
+    tLabel = document.getElementById("trophyLabel");
+    inc = document.getElementById("increment");
+    hideInc = 2;
     writeTime();
 }
 
@@ -50,12 +57,17 @@ function writeTime()
     {
         comboCount = 1;
         document.getElementById("combo").innerHTML = "";
-        document.getElementById("combo").style.fontSize = "5rem";
+        document.getElementById("combo").style.fontSize = "4.5rem";
     }
 
     secondiTrofeo++;    //aggiungo secondi per la label del trofeo
     if (secondiTrofeo > nascondiTrofeo) {
         document.getElementById("trophyLabel").style.visibility = "hidden";
+    }
+
+    hideIncTimer++;      //aggiungo secondi per il +1
+    if (hideIncTimer >= hideInc) {
+        inc.style.visibility = "hidden";
     }
 }
 
@@ -63,36 +75,56 @@ function add1()
 {
     counter++;
     document.getElementById("mainBTN").innerHTML = counter;
+
+    //resetto l'animazione del +1
+    inc.style.visibility = "visible";
+    inc.style.animation = 'none';
+    inc.offsetHeight; /* trigger reflow */
+    inc.style.animation = null;
+    hideIncTimer = 0;
+
+    checkForTrophies();     //per i trofei di counter
     if(lastPressed <= secondiCombo)
     {
-        comboCount++;
-        document.getElementById("combo").innerHTML = ("Combo x" + comboCount);
-        //coloro la scritta combo con il colore della combo e ne cambio la dimensione
-        switch (comboCount) {
-            case 2:
-                document.getElementById("combo").style.color = "#220901";
-                break;
-            case 3:
-                document.getElementById("combo").style.color = "#621708";
-                document.getElementById("combo").style.fontSize = "5.5rem";
-            break;
-            case 4:
-                document.getElementById("combo").style.color = "#941B0C";
-                document.getElementById("combo").style.fontSize = "6rem";
-                break;
-            case 5:
-                document.getElementById("combo").style.color = "#BC3908";
-                document.getElementById("combo").style.fontSize = "6.5rem";
-            break;
-            case 10:
-                checkForTrophies();
-            break;
-            default:    //da qui in poi li voglio tutti così
-                document.getElementById("combo").style.color = "#F6AA1C";
-                document.getElementById("combo").style.fontSize = "7.5rem";
-        }
+        printCombo();
     }
     lastPressed = 0;
+}
+
+function printCombo()
+{
+    comboCount++;
+    document.getElementById("combo").innerHTML = ("Combo x" + comboCount);
+    //coloro la scritta combo con il colore della combo e ne cambio la dimensione
+    switch (comboCount) {
+        case 2:
+            combo.style.color = "#220901";
+            break;
+        case 3:
+            combo.style.color = "#621708";
+            combo.style.fontSize = "5rem";
+        break;
+        case 4:
+            combo.style.color = "#941B0C";
+            combo.style.fontSize = "5.5rem";
+            break;
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            combo.style.color = "#BC3908";
+            combo.style.fontSize = "6rem";
+        break;
+        case 10:
+            combo.style.color = "purple";
+            combo.style.fontSize = "6.5rem";
+            checkForTrophies();
+        break;
+        default:    //da qui in poi li voglio tutti così
+            combo.style.color = "purple";
+            combo.style.fontSize = "6.5rem";
+    }
 }
 
 function checkForTrophies()
@@ -128,15 +160,15 @@ function showTrophy(code){
     switch (code) {
         case 1:     //combo x10
             //imposto i valori per il pop-up
-            document.getElementById("trophyTitle").innerHTML = "Ora si ragiona";    //titolo
-            document.getElementById("trophyBody").innerHTML = "Ottieni una combo x10 di domande";   //contenuto
+            tTitle.innerHTML = "Ora si ragiona";    //titolo
+            tBody.innerHTML = "Ottieni una combo x10 di domande";   //contenuto
             //imposto i valori per i trofei della paginma dei trofei (trophyPage)
             document.getElementById("t0").innerHTML = "Ora si ragiona"; //titolo
             document.getElementById("b0").innerHTML = "Ottieni una combo x10 di domande";   //contenuto
         break;
         case 2:
-            document.getElementById("trophyTitle").innerHTML = "Voglia di imparare";
-            document.getElementById("trophyBody").innerHTML = "Fai 25 domande";
+            tTitle.innerHTML = "Voglia di imparare";
+            tBody.innerHTML = "Fai 25 domande";
             document.getElementById("t1").innerHTML = "Voglia di imparare";
             document.getElementById("b1").innerHTML = "Fai 25 domande";
         break;
@@ -144,27 +176,30 @@ function showTrophy(code){
 
         break;
         case 4:
-            document.getElementById("trophyTitle").innerHTML = "100 domande?!?!?";
-            document.getElementById("trophyBody").innerHTML = "Forse a questo punto ci colpa il prof";
+            tTitle.innerHTML = "100 domande?!?!?";
+            tBody.innerHTML = "Forse a questo punto ci colpa il prof";
             document.getElementById("t3").innerHTML = "100 domande?!?!?";
             document.getElementById("b3").innerHTML = "Forse a questo punto ci colpa il prof";
         break;
         case 9:
-            document.getElementById("trophyTitle").innerHTML = "ERROR 404";
-            document.getElementById("trophyBody").innerHTML = "Nessuna domanda trovata.";
+            tTitle.innerHTML = "ERROR 404";
+            tBody.innerHTML = "Nessuna domanda trovata.";
             document.getElementById("t0").innerHTML = "ERROR 404";
             document.getElementById("b0").innerHTML = "Nessuna domanda trovata.";
             //lo metto nel primo perchè tanto è l'unico
         break;
     }
-    document.getElementById("trophyLabel").style.visibility = "visible";
+    tLabel.style.visibility = "visible";
+    tLabel.style.animation = 'none';
+    tLabel.offsetHeight; /* trigger reflow */
+    tLabel.style.animation = null; 
     secondiTrofeo = 0;
 }
 
 function trophyPageOn()
 {
     document.getElementById("trophyPage").style.display = "block";
-    checkForTrophies
+    //checkForTrophies
     if(gameOver)
     {
         document.getElementById("score").style.display = "none";
