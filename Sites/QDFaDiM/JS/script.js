@@ -229,9 +229,10 @@ function showTrophy(code){
             //lo metto nel primo perchè tanto è l'unico
         break;
     }
+    
     tLabel.style.visibility = "visible";
     tLabel.style.animation = 'none';
-    tLabel.offsetHeight; /* trigger reflow */
+    tLabel.offsetHeight; //resetto l'animazione
     tLabel.style.animation = null; 
     secondiTrofeo = 0;
 }
