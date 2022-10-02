@@ -11,7 +11,7 @@ function initialize()
 {
     minuti = ore = counter = secondiTrofeo = 0;
     secondi = -1;   //perchè la prima cosa che fa è aggiornarlo
-    comboCount = 1;
+    comboCount = 0;
     secondiCombo = 2;
     nascondiTrofeo = 5;
     lastPressed = -1;
@@ -59,9 +59,8 @@ function writeTime()
     lastPressed++;  //aggiungo secondi per la combo
     if(lastPressed > secondiCombo)
     {
-        comboCount = 1;
-        document.getElementById("combo").innerHTML = "";
-        document.getElementById("combo").style.fontSize = "4.5rem";
+        comboCount = 0; //resetto comboCount
+        document.getElementById("combo").innerHTML = "";    //elimino la scritta
     }
 
     secondiTrofeo++;    //aggiungo secondi per la label del trofeo
@@ -101,11 +100,12 @@ function add1()
 function printCombo()
 {
     comboCount++;
-    document.getElementById("combo").innerHTML = ("Combo x" + comboCount);
+    if (comboCount > 1) document.getElementById("combo").innerHTML = ("Combo x" + comboCount);
     //coloro la scritta combo con il colore della combo e ne cambio la dimensione
     switch (comboCount) {
         case 2:
             combo.style.color = "#220901";
+            combo.style.fontSize = "4.5rem"
             break;
         case 3:
             combo.style.color = "#621708";
