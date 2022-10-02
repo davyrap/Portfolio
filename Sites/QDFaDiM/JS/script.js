@@ -4,7 +4,8 @@ var numTrofei = 10;
 var combo, tBody, tTitle, tLabel, inc;
 //^ lo inizializzo fuori perchè, dato che initialize() accade dopo buildTrophyList(), non sarebbe inizializzata
 var audio;
-var combo10Earned, counter25Earned, fastStartEarned,  counter100Earned, combo100Earned, inactivityEarned, gameOver;
+var combo10Earned, counter25Earned, fastStartEarned,  counter100Earned, combo100Earned, inactivityEarned,
+ripensoEarned, gameOver;
 
 function initialize()
 {
@@ -15,8 +16,10 @@ function initialize()
     nascondiTrofeo = 5;
     lastPressed = -1;
     interval = 1000;
+
     combo10Earned = counter25Earned = fastStartEarned = counter100Earned = combo100Earned = inactivityEarned
-    = gameOver = false;
+    = ripensoEarned = gameOver = false;
+
     interval = setInterval(writeTime, interval);    //faccio partire l'intervallo di 1 secondo
     audio = document.getElementById("trophy");
     document.getElementById("intro").style.display = "none";
@@ -25,7 +28,7 @@ function initialize()
     tBody = document.getElementById("trophyBody");
     tLabel = document.getElementById("trophyLabel");
     inc = document.getElementById("increment");
-    hideInc = 2;
+    hideInc = 2;    //timer per nascondere l'incremento (+1)
     writeTime();
 }
 
@@ -54,7 +57,6 @@ function writeTime()
     document.getElementById("stopwatch").innerHTML = display;   //aggiorno il display
 
     lastPressed++;  //aggiungo secondi per la combo
-    console.log(lastPressed);
     if(lastPressed > secondiCombo)
     {
         comboCount = 1;
@@ -178,7 +180,6 @@ function checkForTrophies()
         audio.play();
         showTrophy(8);
     }
-    console.log("nada");
 }
 
 function showTrophy(code){
@@ -220,6 +221,12 @@ function showTrophy(code){
             tBody.innerHTML = "Non fare domande per BEN 10 MINUTI";
             document.getElementById("t5").innerHTML = "Cioè nel senso posso?";
             document.getElementById("b5").innerHTML = "Non fare domande per BEN 10 MINUTI";
+        break;
+        case 6:
+            tTitle.innerHTML = "... anzi no";
+            tBody.innerHTML = "Ripensaci e non terminare la lezone";
+            document.getElementById("t6").innerHTML = "... anzi no";
+            document.getElementById("b6").innerHTML = "Ripensaci e non terminare la lezone";
         break;
         case 8:
             tTitle.innerHTML = "?!?ERROR 404?!?";
@@ -265,13 +272,23 @@ function buildTrophyList()
 
 function endgame()
 {
-    gameOver = true;
-    clearInterval(interval);    //interrompo la conta dei secondi
-    document.getElementById("titoloFine").innerHTML = ("Lezione terminata!");
-    document.getElementById("bodyFine").innerHTML = ("Ivan ha chiesto " + counter + " domande in " + display);
-    document.getElementById("score").style.display = "block";
-    document.getElementById("stopTimer").disabled = "true";
-    checkForTrophies();     //vedo se ho ottenuto il trofeo 9
+    if (confirm("Desideri davvero finire la lezione?")) {
+        gameOver = true;
+        clearInterval(interval);    //interrompo la conta dei secondi
+        document.getElementById("titoloFine").innerHTML = ("Lezione terminata!");
+        document.getElementById("bodyFine").innerHTML = ("Ivan ha chiesto " + counter + " domande in " + display);
+        document.getElementById("score").style.display = "block";
+        document.getElementById("stopTimer").disabled = "true";
+    }
+    else
+    {
+        if (!ripensoEarned) {
+            ripensoEarned = true;
+            audio.play();
+            showTrophy(6);
+        }
+    }
+    checkForTrophies();
 }
 
 function reload()
