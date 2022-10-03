@@ -14,7 +14,7 @@ function initialize()
     comboCount = 0;
     secondiCombo = 2;
     nascondiTrofeo = 5;
-    lastPressed = -1;
+    lastPressed = -1;   //perchè la prima cosa che fa è aggiornarlo
     interval = 1000;
 
     combo10Earned = counter25Earned = fastStartEarned = counter100Earned = combo100Earned = inactivityEarned
@@ -59,7 +59,7 @@ function writeTime()
     lastPressed++;  //aggiungo secondi per la combo
     if(lastPressed > secondiCombo)
     {
-        comboCount = 0; //resetto comboCount
+        comboCount = 1; //resetto comboCount (non so pewrcgè ma funziona solo messo ad 1)
         document.getElementById("combo").innerHTML = "";    //elimino la scritta
     }
 
@@ -231,8 +231,11 @@ function showTrophy(code){
         case 8:
             tTitle.innerHTML = "?!?ERROR 404?!?";
             tBody.innerHTML = "Nessuna domanda trovata.";
-            document.getElementById("t0").innerHTML = "?!?ERROR 404?!?";
-            document.getElementById("b0").innerHTML = "Nessuna domanda trovata.";
+            for(i = 0; i < numTrofei; i++)
+            {
+                document.getElementById("t" + i).innerHTML = "?!?ERROR 404?!?";
+                document.getElementById("b" + i).innerHTML = "Nessuna domanda trovata.";
+            }
             //lo metto nel primo perchè tanto è l'unico
         break;
     }
