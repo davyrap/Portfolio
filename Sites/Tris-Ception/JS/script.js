@@ -141,22 +141,22 @@ function CheckForVictory(buttonId)
     isTris = false;
     switch (buttonId % 9) {
         case 0:
-            if(btn(buttonId) == btn(buttonId+1) && btn(buttonId) == btn(buttonId+2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, -12.25, 0);}
-            else if(btn(buttonId) == btn(buttonId+3) && btn(buttonId) == btn(buttonId+6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(-11.5, 0, 90);}
+            if(btn(buttonId) == btn(buttonId+1) && btn(buttonId) == btn(buttonId+2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, -1, 0);}
+            else if(btn(buttonId) == btn(buttonId+3) && btn(buttonId) == btn(buttonId+6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(-1, 0, 90);}
             else if(btn(buttonId) == btn(buttonId+4) && btn(buttonId) == btn(buttonId+8) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, 45);}
         break;
         case 1:
-            if(btn(buttonId) == btn(buttonId+1) && btn(buttonId) == btn(buttonId-1) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, -12.25, 0);}
+            if(btn(buttonId) == btn(buttonId+1) && btn(buttonId) == btn(buttonId-1) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, -1, 0);}
             else if(btn(buttonId) == btn(buttonId+3) && btn(buttonId) == btn(buttonId+6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, 90);}
         break;
         case 2:
-            if(btn(buttonId) == btn(buttonId-1) && btn(buttonId) == btn(buttonId-2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, -12.25, 0);}
-            else if(btn(buttonId) == btn(buttonId+3) && btn(buttonId) == btn(buttonId+6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(11.5, 0, 90);}
+            if(btn(buttonId) == btn(buttonId-1) && btn(buttonId) == btn(buttonId-2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, -1, 0);}
+            else if(btn(buttonId) == btn(buttonId+3) && btn(buttonId) == btn(buttonId+6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(1, 0, 90);}
             else if(btn(buttonId) == btn(buttonId+2) && btn(buttonId) == btn(buttonId+4) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, -45);}
         break;
         case 3:
             if(btn(buttonId) == btn(buttonId+1) && btn(buttonId) == btn(buttonId+2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, 0);}
-            else if(btn(buttonId) == btn(buttonId-3) && btn(buttonId) == btn(buttonId+3) && btn(buttonId) != "no") {isTris = true; SetTrisLine(-11.5, 0, 90);}
+            else if(btn(buttonId) == btn(buttonId-3) && btn(buttonId) == btn(buttonId+3) && btn(buttonId) != "no") {isTris = true; SetTrisLine(-1, 0, 90);}
         break;
         case 4:
             if(btn(buttonId) == btn(buttonId+1) && btn(buttonId) == btn(buttonId-1) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, 0);}
@@ -166,20 +166,20 @@ function CheckForVictory(buttonId)
         break;
         case 5:
             if(btn(buttonId) == btn(buttonId-1) && btn(buttonId) == btn(buttonId-2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, 0);}
-            else if(btn(buttonId) == btn(buttonId+3) && btn(buttonId) == btn(buttonId-3) && btn(buttonId) != "no") {isTris = true; SetTrisLine(11.5, 0, 90);}
+            else if(btn(buttonId) == btn(buttonId+3) && btn(buttonId) == btn(buttonId-3) && btn(buttonId) != "no") {isTris = true; SetTrisLine(1, 0, 90);}
         break;
         case 6:
-            if(btn(buttonId) == btn(buttonId+1) && btn(buttonId) == btn(buttonId+2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 12.25, 0);}
-            else if(btn(buttonId) == btn(buttonId-3) && btn(buttonId) == btn(buttonId-6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(-11.5, 0, 90);}
+            if(btn(buttonId) == btn(buttonId+1) && btn(buttonId) == btn(buttonId+2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 1, 0);}
+            else if(btn(buttonId) == btn(buttonId-3) && btn(buttonId) == btn(buttonId-6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(-1, 0, 90);}
             else if(btn(buttonId) == btn(buttonId-2) && btn(buttonId) == btn(buttonId-4) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, -45);}
         break;
         case 7:
-            if(btn(buttonId) == btn(buttonId-1) && btn(buttonId) == btn(buttonId+1) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 12.25, 0);}
+            if(btn(buttonId) == btn(buttonId-1) && btn(buttonId) == btn(buttonId+1) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 1, 0);}
             else if(btn(buttonId) == btn(buttonId-3) && btn(buttonId) == btn(buttonId-6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, 90);}
         break;
         case 8:
-            if(btn(buttonId) == btn(buttonId-1) && btn(buttonId) == btn(buttonId-2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 12.25, 0);}
-            else if(btn(buttonId) == btn(buttonId-3) && btn(buttonId) == btn(buttonId-6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(11.5, 0, 90);}
+            if(btn(buttonId) == btn(buttonId-1) && btn(buttonId) == btn(buttonId-2) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 1, 0);}
+            else if(btn(buttonId) == btn(buttonId-3) && btn(buttonId) == btn(buttonId-6) && btn(buttonId) != "no") {isTris = true; SetTrisLine(1, 0, 90);}
             else if(btn(buttonId) == btn(buttonId-4) && btn(buttonId) == btn(buttonId-8) && btn(buttonId) != "no") {isTris = true; SetTrisLine(0, 0, 45);}
         break;
     }
@@ -211,7 +211,6 @@ function SetBigTile(tileId, winner)
 
         // debbo spareggiare
         Spareggio();
-        
     }
 }
 
@@ -275,12 +274,12 @@ function btn(id)
     return ret
 }
 
-function SetTrisLine(xOffset, yOffset, orientationOffset)
+function SetTrisLine(xMultiplier, yMultiplier, orientationOffset)
 {
     if(checkFor == "win")   // ovvero "fallo solo per il super tris"
     {
         linea = document.getElementById("line");
-        linea.style.translate = xOffset + "vw " + yOffset + "vw";
+        linea.style.translate = xMultiplier * 11.55 + "vw " + yMultiplier * 11.5 + "vw";
         linea.style.transform = "rotate(" + orientationOffset + "deg)";
         linea.style.display = "block";
         linea.classList.add("trisAnimation");
