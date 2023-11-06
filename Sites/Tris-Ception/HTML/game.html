@@ -14,7 +14,10 @@
     <audio src="../RESOURCES/Billiards - Endgame.mp3" id="endgameSong"></audio>
 </head>
 <body>
-    <div id="starter"><button class="cliccableButton" onclick="Start(), ClickSFX()">Inizia partita</button></div>
+    <div id="starter">
+        <video src="../RESOURCES/ambient.mp4" autoplay loop muted style="position: fixed; opacity: .5; width: 100vw; margin: 0;"></video>
+        <button class="cliccableButton" onclick="Start(), ClickSFX()">Inizia partita</button>
+    </div>
 
     <h1 id="turnoDi">Scrive X</h1>
     <div id="tableHolder"></div>
