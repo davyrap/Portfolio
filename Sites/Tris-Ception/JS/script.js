@@ -82,11 +82,19 @@ function Write(buttonId, tileId)    // chiamata da ogni button
         tilesConcluse.push(tileId);
         SetBigTile(tileId, turno);
     }
-    else if(IsTileFull(tileId))   // non c'è state un tris in tab tileId
+    else if(IsTileFull(tileId))   // non c'è stato un tris in tab tileId
     {
         tilesConcluse.push(tileId);
         document.getElementById("tab" + tileId).innerHTML = "<div class='winLabel' id='win" + tileId + "'>/</div>";   
         if(useSFX) document.getElementById("simpleTrisFX").play();
+
+        if(tilesConcluse.length == 9)  // se questa casella è l'ultima e non c'è tris-ception
+        {
+            EndGame()
+
+            // debbo spareggiare
+            Spareggio();
+        }
     }
 
     if(!gameover) DisableAllTilesExcept(buttonId%9);
@@ -202,29 +210,35 @@ function SetBigTile(tileId, winner)
         EndGame()
 
         // debbo spareggiare
-        xVictories = 0;
-        oVictories = 0;
-        for(i = 0; i < 9; i++)
-        {
-            if(document.getElementById("win" + i).innerHTML == "X") xVictories++;
-            else if(document.getElementById("win" + i).innerHTML == "O") oVictories++
-        }
-
-        if(xVictories > oVictories)
-        {
-            document.getElementById("turnoDi").innerHTML = "X vince allo spareggio! Ha conquistato più riquadri!";
-        }
-        else if(oVictories > xVictories)
-        {
-            document.getElementById("turnoDi").innerHTML = "O vince allo spareggio! Ha conquistato più riquadri!";
-        }
-        else
-        {
-            document.getElementById("turnoDi").innerHTML = "È un pareggio!";
-        }
-
-        gameover = true;
+        Spareggio();
+        
     }
+}
+
+function Spareggio()
+{
+    xVictories = 0;
+    oVictories = 0;
+    for(i = 0; i < 9; i++)
+    {
+        if(document.getElementById("win" + i).innerHTML == "X") xVictories++;
+        else if(document.getElementById("win" + i).innerHTML == "O") oVictories++
+    }
+
+    if(xVictories > oVictories)
+    {
+        document.getElementById("turnoDi").innerHTML = "X vince allo spareggio! Ha conquistato più riquadri!";
+    }
+    else if(oVictories > xVictories)
+    {
+        document.getElementById("turnoDi").innerHTML = "O vince allo spareggio! Ha conquistato più riquadri!";
+    }
+    else
+    {
+        document.getElementById("turnoDi").innerHTML = "È un pareggio!";
+    }
+
+    gameover = true;
 }
 
 function EndGame()
