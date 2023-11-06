@@ -258,6 +258,7 @@ function EndGame()
         }
     document.getElementById("musicLoop").pause();
     document.getElementById("endgameSong").play();
+    document.getElementById("restartBtn").style.display = "block";
 }
 
 checkFor = "btn";
