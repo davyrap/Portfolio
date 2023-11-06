@@ -111,6 +111,9 @@ body{
 #link_domandeDiM:hover{
     color: #00000000;
 }
+#link_Tris{
+    background-image: url("../Assets/tris.png");
+}
 
 #link_appInv{
     background-image: url(../Assets/Roulette-Regole.png);
