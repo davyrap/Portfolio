@@ -242,14 +242,6 @@ function Spareggio()
 
 function EndGame()
 {
-    // setTimeout(() => {      // per non farlo riattivare nelle righe successive alla chiamata
-    //     for(i = 0; i < 9; i++)
-    //     {
-    //         document.getElementById("hid" + i).style.display = "block"; // blocco tutto così non si gioca più
-    //         document.getElementById("tab" + i).classList.remove("blur");
-    //     }
-    //     console.log("DisableWithNoException");
-    // }, 100);
     for(i = 0; i < 9; i++)
         {
             document.getElementById("hid" + i).style.display = "block"; // blocco tutto così non si gioca più
