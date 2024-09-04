@@ -21,6 +21,10 @@ body{
     justify-content: center;
 }
 
+.communication{
+    font-size: 1.75vw;
+}
+
 #starter{
     position: fixed;
     width: 100vw;

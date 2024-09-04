@@ -29,6 +29,10 @@
         font-size: 3rem;
     }
 
+    .communication{
+        font-size: 5rem;
+    }
+
     .tutorialSection{
         width: 100vw;
         margin-bottom: 4rem;
@@ -47,7 +51,7 @@
         font-size: 7.5rem;
         margin-bottom: 0;
     }
-    .tutorialSection p, p{
+    .tutorialSection p{
         font-size: 5rem;
         margin-bottom: 5rem;
     }
