@@ -2,103 +2,89 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="JS/script.js"></script>
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="shortcut icon" href="Assets/favicon.png" type="image/x-icon">
     <title>Portfolio</title>
+    <script src="./JS/script.js"></script>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/mobile.css">
+    <link rel="shortcut icon" href="./Resources/favicon.png" type="image/x-icon">
 </head>
 <body>
-    <div>
-        <h2 class="subtitle">My skills</h2>
-        <div class="container">
-            <h3>C++</h3>
-            <div class="barraV">
-                <div id="barCpp" class="barraP">
-                    80%
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <h3>HTML</h3>
-            <div class="barraV">
-                <div id="barHTML" class="barraP">
-                    75%
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <h3>CSS</h3>
-            <div class="barraV">
-                <div id="barCSS" class="barraP">
-                    60%
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <h3>JS</h3>
-            <div class="barraV">
-                <div id="barJS" class="barraP">
-                    90%
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <h3>Blender</h3>
-            <div class="barraV">
-                <div id="barBlend" class="barraP">
-                    58%
-                </div>
-            </div>
-        </div>
+    <div id="main-section">
+        <h1>Davide Rapisarda</h1>
+        <h2>Software engineer</h2>
     </div>
-    <div>
-        <div id="link_cont">
-            <h2 class="subtitle">My best projects</h2>
+    <div class="project-section best-project-section">
+        <h2 class="section-title">Projects I'm proud of</h2>
 
-            <div class="aHolder" id="aHolder1">
-                <a href="./Sites/tombolaDiRap/index.html" id="link_tombola" target="_blank">Tombola</a>
-                <p>Il mio primo grande progetto. <br> Ho presentato questo lavoro in un open-day a scuola e ha catturato l'attenzione di tutti
-                    <br><br>(03/12/2021)
-                </p>
+        <div class="project best-project">
+            <img src="./Resources/Tombola.png" alt="Tombola" class="project-image best-project-image" onclick="LinkTo('./Sites/tombolaDiRap/index.html')">
+            <div class="column">
+                <div class="project-title">Tombola</div>
+                <div class="project-caption">My first big project.<br>
+                    I presented it during an open-day in my school and it got everyone's attention
+                    <br>
+                    (03/12/2021)
+                </div>
             </div>
-            <div class="aHolder" id="aHolder2">
-                <a href="./Sites/KO/index.html" id="link_KO" target="_blank"><nobr>Gioco del KO</nobr></a>
-                <p>Progetto con il quale ho vinto un concorso Adecco nella mia scuola
-                    <br><br>(26/05/2022)
-                </p>
+        </div>
+
+        <div class="project best-project">
+            <img src="./Resources/KO.png" alt="KO" class="project-image best-project-image" onclick="LinkTo('./Sites/KO/index.html')">
+            <div class="column">
+                <div class="project-title">Gioco del KO</div>
+                <div class="project-caption">Application with which I won an Adecco competition in my school.
+                    <br>
+                    (26/05/2022)
+                </div>
             </div>
-            <div class="aHolder">
-                <a href="./Sites/QDFaDiM/index.html" id="link_domandeDiM" target="_blank">QDFaDiM</a>
-                <p id="QDFp">Nato per scherzo, originariamente doveva essere un semplice contatore di domande <br>
-                Durante lo sviluppo, però, si è trasformato in un vero e proprio gioco
-                <br><br>(04/10/2022)</p>
-            </div>
-            <div class="aHolder">
-                <a href="./Sites/Tris-Ception/index.html" id="link_Tris" target="_blank">Tris-ception</a>
-                <p>Un giochino molto simpatico di cui ho finito lo sviluppo per una volta :)<br>
-                <br><br>(06/11/2023)</p>
+        </div>
+        
+        <div class="project best-project">
+            <img src="./Resources/Tris-Ception.png" alt="Tris-Ception" class="project-image best-project-image" onclick="LinkTo('./Sites/Tris-Ception/index.html')">
+            <div class="column">
+                <div class="project-title">Tris-Ception</div>
+                <div class="project-caption">A fun little game that I completed developing for once :) <br>
+                    Plus, I developed a multiplayer version of this game using NodeJs to manage a socket connection.
+                    <br>
+                    (06/11/2023)</div>
             </div>
         </div>
     </div>
-    <div>
-        <h2 class="subtitle">Other projects</h2>
-        <div class="study">
-            <div class="studyColumn">
-                <h3>Roulette in Appinventor</h3>
-                <p>Uno dei miei primi seri approcci al mondo della programmazione</p>
+    <div class="project-section">
+        <h2 class="section-title">Other projects i enjoyed developing</h2>
+
+        <div class="project">
+            <img src="./Resources/QDFaDim.png" alt="QDFaDiM" class="project-image" onclick="LinkTo('./Sites/QDFaDiM/index.html')">
+            <div class="column">
+                <div class="project-title">QDFaDiM</div>
+                <div class="project-caption">
+                    Born as a joke, it was originally intended to be a simple question counter. <br>
+                    During development, however, it transformed into a real game.
+                    <br>
+                    (04/10/2022)
+                </div>
             </div>
-            <a href="https://gallery.appinventor.mit.edu/?galleryid=43f23cde-fc67-4061-97c8-2293fdb4f264" 
-            id="link_appInv" target="_blank"></a>
         </div>
-        <div class="study" style="float: right;">
-            <div class="studyColumn">
-                <h3>Predictor from day cases</h3>
-                <p>Un'app medica realizzata in collaborazione con l'ospedale bla bla bla</p>
+        
+        <div class="project">
+            <img src="./Resources/Roulette-Regole.png" alt="Roulette" class="project-image"
+            onclick="LinkTo('https://gallery.appinventor.mit.edu/?galleryid=43f23cde-fc67-4061-97c8-2293fdb4f264')">
+            <div class="column">
+                <div class="project-title">Roulette</div>
+                <div class="project-caption">One of my first serious approaches to the world of programming.<br>
+                    Made using AppInventor
+                </div>
             </div>
-            <a href="https://gallery.appinventor.mit.edu/?galleryid=d5c9198c-5b49-4b4f-b5f9-d6f266db9822" 
-            id="link_predFrom" target="_blank"></a>
+        </div>
+
+        <div class="project">
+            <img src="./Resources/predictorFromDayCases.png" alt="App ospedaliera" class="project-image"
+            onclick="LinkTo('https://gallery.appinventor.mit.edu/?galleryid=d5c9198c-5b49-4b4f-b5f9-d6f266db9822')">
+            <div class="column">
+                <div class="project-title">Predictor from day cases</div>
+                <div class="project-caption"></div>
+            </div>
         </div>
     </div>
 </body>
