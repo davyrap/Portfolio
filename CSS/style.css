@@ -126,3 +126,36 @@ body{
 .best-project-image.project-image:hover{
     border-color: var(--accent);
 }
+
+
+/* -------------------------------------------- */
+/*Animations */
+/* -------------------------------------------- */
+.animate-on-scroll{
+    animation: appear linear;
+    animation-timeline: view();     /* Anima quando è nel viewport */
+    animation-range: entry 0;
+}
+.fade-in{
+    animation: fadeIn ease 2s;
+}
+@keyframes appear {
+    from{
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+        scale: .9;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
