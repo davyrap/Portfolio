@@ -54,7 +54,12 @@ function Restart()
     window.location = "game.html";
 }
 
-window.onload = document.getElementById("tableHolder").innerHTML += CreaGigaTris();
+var isAIEnabled;
+window.onload = function() {
+    document.getElementById("tableHolder").innerHTML += CreaGigaTris();
+    isAIEnabled = getQueryParameter("UseIA") === "true";
+    console.log(isAIEnabled);
+}
 
 //==============LOGICA DI GIOCO=======================
 
@@ -86,7 +91,6 @@ function Write(buttonId, tileToActivate = -1)    // chiamata da ogni button
     {
         tileToActivate = buttonId%9;
     }
-    console.log(tileToActivate);
 
     victory = CheckForVictory(buttonId);
 
@@ -110,11 +114,20 @@ function Write(buttonId, tileToActivate = -1)    // chiamata da ogni button
         }
     }
 
+    while(tilesConcluse.includes(tileToActivate))     // se sto puntando ad una casella conclusa
+    {
+        tileToActivate = Math.floor(Math.random() * 9);   // estrai non ne becco una non conclusa
+    }
+
     if(!gameover) DisableAllTilesExcept(tileToActivate);
 
-    // qui invia al server buttonId e tileToActivate
-
     turno = !turno;
+
+    // l'IA giocherà con O
+    if(!turno && isAIEnabled && !gameover)
+    {
+        setTimeout(AI, (Math.floor(Math.random() * 4) + 1) * 1000, tileToActivate);
+    }
 }
 
 function DisableAllTilesExcept(tileToEnable)
@@ -126,12 +139,6 @@ function DisableAllTilesExcept(tileToEnable)
             document.getElementById("tab" + i).classList.add("blur");
             document.getElementById("hid" + i).style.display = "block";
         }
-    }
-    
-    // attivo solo quella selezionata
-    while(tilesConcluse.includes(tileToEnable))     // se sto puntando ad una casella conclusa
-    {
-        tileToEnable = Math.floor(Math.random() * 9);   // estrai non ne becco una non conclusa
     }
 
     // abilito solo la tab da giocare
@@ -342,4 +349,31 @@ function IsMobileDevice()
             return true;
         }
     return false
+}
+
+
+//===================AI LOGIC==========================
+
+function AI(activeTile)
+{
+    // controlla che mossa ha senso fare in questa partita
+    // controlla se nella partita corrispondente gli manca 1 per vincere
+    // altrimenti vedi prossima mossa migliore
+    // altrimenti, se tutte portano ad una soìconfitta, random
+    // chiama la funzione Write
+
+    // prova
+    selected = -1;
+    button = 0;
+    do{
+        selected = 9 * activeTile + Math.floor(Math.random() * 9);
+        button = document.getElementById("btn" + selected);
+    }while(button == null || button.disabled == true);
+    Write(selected);
+}
+
+
+function getQueryParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
 }

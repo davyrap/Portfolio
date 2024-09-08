@@ -239,7 +239,7 @@ body{
     border: solid 3px var(--black);
     border-radius: .5rem;
     padding: 1rem;
-    width: 20rem;
+    width: 30%;
     color: var(--white);
     background-color: var(--grey);
     cursor: pointer;
@@ -387,7 +387,7 @@ input[type="checkbox"]
 .buttonHolder{
     display: flex;
     justify-content: space-between;
-    width: 50vw;
+    width: 80vw;
     margin: 7.5vh;
 }
 

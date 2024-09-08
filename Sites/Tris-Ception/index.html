@@ -13,8 +13,9 @@
     <h1 id="mainTitle">Tris-ception</h1>
 
     <div class="buttonHolder">
-        <button type="button" onclick="GoToGame()" class="cliccableButton">Gioca in locale</button>
-        <button type="button" onclick="GoToOnline()" class="cliccableButton" disabled>Gioca online</button>
+        <button type="button" onclick="GoToGame('false')" class="cliccableButton">Multigiocatore locale</button>
+        <button type="button" onclick="GoToGame('true')" class="cliccableButton">Gioca con IA</button>
+        <button type="button" onclick="GoToOnline()" class="cliccableButton" disabled>Multigiocatore online</button>
     </div>
     <p class="communication">La prova gratuita del server è finita,<br>il multigiocatore non è più disponibile.</p>
 
@@ -52,16 +53,17 @@
     </div>
 
     <div class="buttonHolder">
-        <button type="button" onclick="GoToGame()" class="cliccableButton">Gioca in locale</button>
+        <button type="button" onclick="GoToGame('false')" class="cliccableButton">Multigiocatore locale</button>
+        <button type="button" onclick="GoToGame('true')" class="cliccableButton">Gioca con IA</button>
         <button type="button" onclick="GoToOnline()" class="cliccableButton" disabled>Gioca online</button>
     </div>
     <p class="communication">La prova gratuita del server è finita,<br>il multigiocatore non è più disponibile.</p>
 </body>
 
 <script>
-    function GoToGame()
+    function GoToGame(useIA)
     {
-        window.location = "./HTML/game.html";
+        window.location = "./HTML/game.html?UseIA=" + useIA;
     }
     function GoToOnline()
     {
