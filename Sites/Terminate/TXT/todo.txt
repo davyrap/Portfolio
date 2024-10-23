@@ -1,0 +1,12 @@
+- Creare una console
+- Blinking cursor
+- Funzione help
+- Funzione cls
+Filesystem
+    - Mostrare file
+    - Leggere file
+    - Scaricare file
+    Eliminare file (masismo x files)
+- Accedere ai comandi precedenti con le freccette
+- Aggiungere le freccette su/giù
+Aggiungere le freccette dx/sx (metti un testo dopo il cursore)

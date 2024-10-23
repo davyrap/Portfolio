@@ -124,6 +124,7 @@ body{
 #tableHolder{
     visibility: hidden;
     margin-top: 2rem;
+    
 }
 .fadeIn{
     animation: tableGetIn 1.5s ease;

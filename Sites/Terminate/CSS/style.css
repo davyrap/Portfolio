@@ -1,0 +1,71 @@
+:root {
+    --background: #101010;
+    --foreground: #00e900;
+    --input-color: orange;
+    --input-user-color: white;
+    --font-width: 2.5rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background);
+    margin-left: 1%;
+}
+
+#console {
+    font-size: var(--font-width);
+    font-family: monospace;
+    color: var(--foreground);
+    text-shadow: 0 0 4px var(--foreground);
+    
+    width: 100%;
+    height: 100vh;
+
+    overflow-y: auto; /* Scroll if content overflows */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    cursor: none;
+
+    white-space: pre;   /* La vita: formatta \n e \t */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+#console::-webkit-scrollbar {
+    display: none;
+}
+
+.cursor {
+    animation: cursor-blink 1s infinite linear;
+}
+.hidden {
+    display: none;
+}
+@keyframes cursor-blink {
+    0% {opacity: 0;}
+    24% {opacity: 0;}
+    25% {opacity: 100%;}
+    74% {opacity: 100%;}
+    75% {opacity: 0;}
+    100% {opacity: 0;}
+}
+
+.input {
+    display: flex;
+    flex-wrap: wrap;
+
+    color: var(--input-color);
+    text-shadow: 0 0 4px var(--input-color);
+}
+
+.input-user, .cursor {
+    color: var(--input-user-color);
+    text-shadow: 0 0 4px var(--input-user-color);
+}
