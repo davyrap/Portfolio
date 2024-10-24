@@ -1,7 +1,7 @@
 class Filesys {
     constructor() {
         this.ALLFILES = ["todo.txt", "ciao.txt", "homework.txt", "table.tab"];
-        this.myFiles = ["todo.txt", "ciao.txt", "table.tab"];
+        this.myFiles = ["todo.txt", "table.tab"];
         this.maxFiles = 3;
         this.ALLAPPS = ["snake.exe"];
         this.myApps = [];

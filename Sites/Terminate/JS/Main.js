@@ -10,6 +10,7 @@ var activeInput;
 var typedCommand = "";
 var commandHistory = [];
 var selectedCommandIndex = 0;
+var isWriting = false;
 
 var typedIndex = 0;
 
@@ -20,6 +21,7 @@ window.onload = function () {
 }
 
 addEventListener("keydown", function (event) {
+    if(isWriting) return;
     if(!IsInputValid(event.key)) return;
 
     if(event.key == "Enter") {
@@ -67,10 +69,12 @@ addEventListener("keydown", function (event) {
 function Type(text) {
     if(typedIndex >= text.length) {
         typedIndex = 0;
+        isWriting = false;
         CreateNextInput();
         return;
     }
 
+    isWriting = true;
     terminal.innerHTML = terminal.innerHTML + text[typedIndex];
     typedIndex++;
     // Scroll to the bottom of the terminal

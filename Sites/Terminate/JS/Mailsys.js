@@ -1,7 +1,7 @@
 class Mailsys {
     constructor() {
-        this.ALLMAILS = ["mail1", "mail2"];
-        this.inbox = ["mail1", "mail2"];
+        this.ALLMAILS = ["mail1", "translate_please"];
+        this.inbox = ["translate_please"];
         this.readMails = [];
     }
 
@@ -9,6 +9,7 @@ class Mailsys {
         let out = "[] = unread mail\n\n";
         this.inbox.forEach(mail => {
             if(this.readMails.indexOf(mail) == -1) out += "[] ";
+            else out += "   ";
             out += mail + "\n";
         });
         Type(out);
