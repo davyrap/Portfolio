@@ -122,8 +122,13 @@ function SwitchCommand(str) {
         case "fs":
             fs.ListFile();
         break;
+        case "mailsystem":
+        case "ms":
+            ms.ListMail();
+        break;
         case "read":
-            fs.ReadFile(command[1]);
+            if(command[1] == "mail") ms.ReadMail(command[2]);
+            else fs.ReadFile(command[1]);
         break;
         case "delete":
         case "del":
