@@ -85,6 +85,7 @@ function Type(text) {
     if(typedIndex >= text.length) {
         typedIndex = 0;
         isWriting = false;
+        document.getElementById("double-bip").play();
         CreateNextInput();
         return;
     }
