@@ -7,9 +7,8 @@ Filesystem
     - Leggere file
     - Scaricare file
     - Eliminare file
-- Accedere ai comandi precedenti con le freccette
-- Aggiungere le freccette su/giù
-Aggiungere le freccette dx/sx (metti un testo dopo il cursore)
+- Aggiungere le freccette su/giù (comandi precedenti)
+- Aggiungere le freccette dx/sx (metti un testo dopo il cursore)
 Mailsystem
     - Mostrare l'inbox
     - Leggere mail

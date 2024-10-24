@@ -1,11 +1,13 @@
 const player = "Davide";
-const input = '<div class="input">' + player + '>&nbsp;<p class="input-user"></p><div class="cursor">&#9608;</div></div>';
+const input = '<div class="input">' + player + '>&nbsp;<p class="input-user"></p><div class="cursor">&#9608;</div><p class="input-user"></div>';
 const maxCommandLength = 30;
 
 var terminal;
 
 var inputs;
-var activeInput;
+var leftActiveInput;
+var rightActiveInput;
+var cursorIndex = 0;
 
 var typedCommand = "";
 var commandHistory = [];
@@ -17,7 +19,8 @@ var typedIndex = 0;
 window.onload = function () {
     terminal = document.getElementById("console");
     terminal.innerHTML += input;
-    activeInput = GetNextInput();
+    leftActiveInput = GetNextInput(1);
+    rightActiveInput = GetNextInput(0);
 }
 
 addEventListener("keydown", function (event) {
@@ -34,6 +37,7 @@ addEventListener("keydown", function (event) {
         commandHistory[commandHistory.length] = typedCommand;
         typedCommand = "";
         selectedCommandIndex = 0;
+        cursorIndex = 0;
         return;
     }
 
@@ -56,14 +60,25 @@ addEventListener("keydown", function (event) {
         }
     }
     
-    else if(event.key == "Backspace") {
-        if(typedCommand.length == 0) return;
-        typedCommand = typedCommand.substring(0, typedCommand.length - 1);
+    else if(event.key == "ArrowLeft") {
+        if(cursorIndex >= typedCommand.length) return;
+        cursorIndex ++;
     }
 
-    else typedCommand = typedCommand + event.key;
+    else if(event.key == "ArrowRight") {
+        if(cursorIndex <= 0) return;
+        cursorIndex --;
+    }
 
-    activeInput.innerHTML = typedCommand;
+    else if(event.key == "Backspace") {
+        if(typedCommand.length == 0) return;
+        typedCommand = typedCommand.slice(0, typedCommand.length - cursorIndex - 1) + typedCommand.slice(typedCommand.length - cursorIndex);
+    }
+
+    else typedCommand = typedCommand.slice(0, typedCommand.length - cursorIndex) + event.key + typedCommand.slice(typedCommand.length - cursorIndex);
+
+    leftActiveInput.innerHTML = typedCommand.slice(0, typedCommand.length - cursorIndex);
+    rightActiveInput.innerHTML = typedCommand.slice(typedCommand.length - cursorIndex);
 });
 
 function Type(text) {
@@ -82,15 +97,16 @@ function Type(text) {
     setTimeout(Type, 30, text);
 }
 
-function GetNextInput() {
+function GetNextInput(index) {
     inputs = document.getElementsByClassName("input-user");
-    return inputs[inputs.length - 1];    // prendo l'ultimo
+    return inputs[inputs.length - index - 1];    // prendo l'ultimo
 }
 
 function CreateNextInput() {
     if(typedCommand.toLowerCase() != "cleanup") {
         terminal.innerHTML += input;
-        activeInput = GetNextInput();
+        leftActiveInput = GetNextInput(1);
+        rightActiveInput = GetNextInput(0);
         terminal.scrollTop = terminal.scrollHeight;    
     }
 }
@@ -99,7 +115,7 @@ function IsInputValid(input) {
     if(input.length == 1) return true;
     if(input == "Enter") return true;
     if(input == "Backspace") return true;
-    if(input == "ArrowUp" || input == "ArrowDown") return true;
+    if(input.substring(0, 5) == "Arrow") return true;
     return false;
 }
 
@@ -156,5 +172,6 @@ function SwitchCommand(str) {
 
 function Cleanup() {
     terminal.innerHTML = input;
-    activeInput = GetNextInput();
+    leftActiveInput = GetNextInput(1);
+    rightActiveInput = GetNextInput(0);
 }
