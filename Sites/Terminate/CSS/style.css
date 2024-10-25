@@ -31,7 +31,7 @@ body {
 
     cursor: none;
 
-    white-space: pre;   /* La vita: formatta \n e \t */
+    white-space: pre-wrap;   /* La vita: formatta \n e \t */
 
     display: flex;
     flex-direction: column;

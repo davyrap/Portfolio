@@ -9,7 +9,9 @@ Filesystem
     - Eliminare file
 - Aggiungere le freccette su/giù (comandi precedenti)
 - Aggiungere le freccette dx/sx (metti un testo dopo il cursore)
+- Aggiungere tasti Home/End (cursore all'inizio o alla fine)
 Mailsystem
     - Mostrare l'inbox
     - Leggere mail
     - Ricevere mail (scriptate)
+- Riscrivi il terminale a oggetti (fatto finalmente!)

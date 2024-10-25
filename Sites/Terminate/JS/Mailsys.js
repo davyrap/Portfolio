@@ -1,15 +1,14 @@
 class Mailsys {
     constructor() {
-        this.ALLMAILS = ["mail1", "translate_please"];
         this.inbox = ["translate_please"];
         this.readMails = [];
     }
 
     ListMail() {
-        let out = "[] = unread mail\n\n";
+        let out = player + "'s inbox\n\n";
         this.inbox.forEach(mail => {
-            if(this.readMails.indexOf(mail) == -1) out += "[] ";
-            else out += "   ";
+            if(this.readMails.indexOf(mail) == -1) out += "* ";
+            else out += "  ";
             out += mail + "\n";
         });
         terminal.Type(out);
@@ -19,7 +18,7 @@ class Mailsys {
     GetNewMail(mailname) {
         if(this.inbox.indexOf(mailname) != -1) return;
 
-        this.inbox[this.inbox.length] = mailname;
+        this.inbox.unshift(mailname)
     }
 
     GetNewMailNotification(mailname) {
@@ -39,7 +38,7 @@ class Mailsys {
 
         if(this.readMails.indexOf(mailname) == -1) this.readMails[this.readMails.length] = mailname;
 
-        fetch("./TXT/" + mailname)
+        fetch("./MAILS/" + mailname)
             .then(response => {
                 return response.text();
             })

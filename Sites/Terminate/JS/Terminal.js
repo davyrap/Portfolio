@@ -33,9 +33,7 @@ class Terminal {
             this.cursorIndex = 0;
             return;
         }
-    
-        if(this.typedCommand.length >= this.MAXCOMMANDLENGTH) return;
-    
+        
         if(event.key == "ArrowUp") {
             if(this.selectedCommandIndex >= this.commandHistory.length) return;
             this.selectedCommandIndex++;
@@ -62,13 +60,22 @@ class Terminal {
             if(this.cursorIndex <= 0) return;
             this.cursorIndex --;
         }
+
+        else if(event.key == "Home") {
+            this.cursorIndex = this.typedCommand.length;
+        }
+
+        else if(event.key == "End") {
+            this.cursorIndex = 0;
+        }
     
         else if(event.key == "Backspace") {
             if(this.typedCommand.length == 0) return;
             this.typedCommand = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex - 1) + this.typedCommand.slice(this.typedCommand.length - this.cursorIndex);
         }
-    
-        else this.typedCommand = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex) + event.key + this.typedCommand.slice(this.typedCommand.length - this.cursorIndex);
+        
+        else if(this.typedCommand.length < this.MAXCOMMANDLENGTH)
+            this.typedCommand = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex) + event.key + this.typedCommand.slice(this.typedCommand.length - this.cursorIndex);
     
         // echo the command on the terminal
         this.leftActiveInput.innerHTML = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex);
@@ -112,6 +119,7 @@ class Terminal {
         if(input == "Enter") return true;
         if(input == "Backspace") return true;
         if(input.substring(0, 5) == "Arrow") return true;
+        if(input == "Home" || input == "End") return true;
         return false;
     }
 

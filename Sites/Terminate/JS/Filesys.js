@@ -70,6 +70,9 @@ class Filesys {
         
         this.myFiles[this.myFiles.length] = filename;
         this.out += "Download complete.";
+        let mailname = progress.CheckProgress(filename);
+        console.log(mailname);        
+        if(mailname != null) this.out += "\n" + ms.GetNewMailNotification(mailname);
         terminal.Type(this.out);
     }
 
