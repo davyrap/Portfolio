@@ -5,7 +5,7 @@ class Filesys {
         this.maxFiles = 3;
 
         this.ALLAPPS = ["snake.exe"];
-        this.myApps = ["snake.exe"];
+        this.myApps = [];
         this.maxApps = 1;
 
         this.out = "";
