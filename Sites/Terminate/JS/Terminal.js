@@ -8,12 +8,15 @@ class Terminal {
         this.rightActiveInput = this.GetNextInput(0);
 
         this.isWriting = false;
+        this.isActive = false;
 
         this.typedCommand = "";
         this.commandHistory = [];
         this.selectedCommandIndex = 0;
         this.cursorIndex = 0;
         this.typedIndex = 0;
+
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     TextInput(event) {
@@ -35,11 +38,13 @@ class Terminal {
         }
         
         if(event.key == "ArrowUp") {
+            event.preventDefault();
             if(this.selectedCommandIndex >= this.commandHistory.length) return;
             this.selectedCommandIndex++;
             this.typedCommand = this.commandHistory[this.commandHistory.length - this.selectedCommandIndex];
         }
         else if(event.key == "ArrowDown") {
+            event.preventDefault();
             if(this.selectedCommandIndex <= 0) return;
             if(this.selectedCommandIndex == 1) {
                 this.typedCommand = "";
@@ -73,6 +78,12 @@ class Terminal {
             if(this.typedCommand.length == 0) return;
             this.typedCommand = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex - 1) + this.typedCommand.slice(this.typedCommand.length - this.cursorIndex);
         }
+
+        else if(event.key == "Delete") {
+            if(this.cursorIndex <= 0) return;
+            this.typedCommand = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex) + this.typedCommand.slice(this.typedCommand.length - this.cursorIndex + 1);
+            this.cursorIndex --;
+        }
         
         else if(this.typedCommand.length < this.MAXCOMMANDLENGTH)
             this.typedCommand = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex) + event.key + this.typedCommand.slice(this.typedCommand.length - this.cursorIndex);
@@ -87,7 +98,8 @@ class Terminal {
             this.typedIndex = 0;
             this.isWriting = false;
             document.getElementById("double-bip").play();
-            this.CreateNextInput();
+            if(!this.isActive) this.Start();    // autostart
+            else this.CreateNextInput();
             return;
         }
     
@@ -117,7 +129,7 @@ class Terminal {
     IsInputValid(input) {
         if(input.length == 1) return true;
         if(input == "Enter") return true;
-        if(input == "Backspace") return true;
+        if(input == "Backspace" || input == "Delete") return true;
         if(input.substring(0, 5) == "Arrow") return true;
         if(input == "Home" || input == "End") return true;
         return false;
@@ -134,14 +146,20 @@ class Terminal {
         this.CreateNextInput();
     }
 
+    handleKeyDown(event) {
+        this.TextInput(event); // Call your method here
+    }
+
     Start() {
-        this.out = document.getElementById("console");
+        this.out = document.getElementById("main-console");
         this.CreateNextInput();
-        addEventListener("keydown", (event) => terminal.TextInput(event));
+        addEventListener("keydown", this.handleKeyDown);
+        this.isActive = true;
     }
 
     Stop() {
-        removeEventListener("keydown");
+        removeEventListener("keydown", this.handleKeyDown);
+        this.isActive = false;
     }
 }
 

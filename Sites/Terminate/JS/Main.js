@@ -4,12 +4,8 @@ const input = '<div class="input">' + player + '>&nbsp;<p class="input-user"></p
 const keysToPrevent = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End"];
 
 window.onload = function () {
-    document.addEventListener('keydown', function(event) {
-        // block scrolling with the keyboard
-        if (keysToPrevent.includes(event.key)) event.preventDefault();
-    });
-
     terminal.Start();
+    // snake.Start();
 }
 
 function SwitchCommand(str) {
@@ -48,6 +44,9 @@ function SwitchCommand(str) {
         case "install":
             fs.DownloadApp(command[1]);
         break;
+        case "run":
+            fs.RunApp(command[1]);
+        break;
         case "uninstall":
         case "uninst":
             fs.DeleteApp(command[1]);
@@ -68,6 +67,7 @@ function Imanoob() {
     result += "delete [filename]:      delete a local file\n";
     result += "download [filename]:    download a file from the internet\n";
     result += "install [appname]:      install an app from the internet\n";
+    result += "run [appname]:          run an installed app\n";
     result += "uninstall [appname]:    uninstall a local app\n";
     terminal.Type("\n" + result + "\n");
 }

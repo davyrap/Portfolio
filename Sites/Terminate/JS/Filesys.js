@@ -1,11 +1,11 @@
 class Filesys {
     constructor() {
-        this.ALLFILES = ["todo.txt", "ciao.txt", "homework.txt", "table.tab", "inventory.txt"];
+        this.ALLFILES = ["todo.txt", "ciao.txt", "homework.txt", "scoreboard.tab", "inventory.txt"];
         this.myFiles = ["todo.txt", "inventory.txt"];
         this.maxFiles = 3;
 
         this.ALLAPPS = ["snake.exe"];
-        this.myApps = [];
+        this.myApps = ["snake.exe"];
         this.maxApps = 1;
 
         this.out = "";
@@ -126,6 +126,26 @@ class Filesys {
         this.myApps[this.myApps.length] = appname;
         this.out += "'" + appname + "' installed.";
         terminal.Type(this.out);
+    }
+
+    RunApp(appname) {
+        if(appname == undefined) {
+            terminal.Type("Call error: expected 1 argument [appname]");
+            return;
+        }
+
+        if(this.myApps.indexOf(appname) == -1) {
+            terminal.Type("Filesystem error: '" + appname + "' is not installed");
+            return;
+        }
+
+        switch (appname.substring(0, appname.length - 4)) {
+            case "snake":
+                snake.Start();
+            break;
+            default:
+                terminal.Type("Filesystem error: '" + appname + "' is not installed")
+        }
     }
 
     DeleteApp(appname) {

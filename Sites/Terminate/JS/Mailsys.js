@@ -27,12 +27,12 @@ class Mailsys {
 
     ReadMail(mailname) {
         if(mailname == undefined) {
-            terminal.Type("Mail reading error: no mail name specified");
+            terminal.Type("Call error: expected 1 argument [mailname]");
             return;
         }
 
         if(this.inbox.indexOf(mailname) == -1) {
-            terminal.Type("Mail reading error: '" + mailname + "' does not exist");
+            terminal.Type("Mailsystem error: '" + mailname + "' does not exist");
             return;
         }
 

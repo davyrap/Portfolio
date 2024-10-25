@@ -13,17 +13,17 @@
 
 body {
     background-color: var(--background);
-    margin-left: 1%;
 }
 
-#console {
+.console {
     font-size: var(--font-width);
     font-family: monospace;
     color: var(--foreground);
     text-shadow: 0 0 4px var(--foreground);
     
-    width: 100%;
+    width: 99%;
     height: 100vh;
+    margin-left: 1%;
 
     overflow-y: auto; /* Scroll if content overflows */
     -ms-overflow-style: none;
@@ -68,4 +68,22 @@ body {
 .input-user, .cursor {
     color: var(--input-user-color);
     text-shadow: 0 0 4px var(--input-user-color);
+}
+
+.snake-console {
+    width: 60%;
+    margin: 0;
+
+    white-space: pre;   /* così non ho problemi di wrap */
+}
+.red-console {
+    color: red;
+}
+#snake-side-panel {
+    width: 40%;
+    position: fixed;
+
+    /* man I don't even forgive myself for these 2 lines */
+    top: 0;
+    right: 0;
 }
