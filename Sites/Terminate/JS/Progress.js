@@ -16,7 +16,7 @@ class Progress {
                 ret = "activity";
             break;
             case "snake.exe":
-                if(snake.highScore >= 2) {
+                if(snake.highScore >= 32) {
                     ms.GetNewMail("still_got_it");
                     ret = "still_got_it";
                 }
