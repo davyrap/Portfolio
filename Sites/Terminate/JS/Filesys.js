@@ -3,10 +3,13 @@ class Filesys {
         this.ALLFILES = ["todo.txt", "ciao.txt", "homework.txt", "table.tab", "inventory.txt"];
         this.myFiles = ["todo.txt", "inventory.txt"];
         this.maxFiles = 3;
+
         this.ALLAPPS = ["snake.exe"];
         this.myApps = [];
         this.maxApps = 1;
+
         this.out = "";
+
         this.fr = new FileReader();
     }
 
@@ -17,17 +20,17 @@ class Filesys {
         });
         if(this.myApps.length <= 0) this.out += "No programs loaded";
         else this.out += this.myApps.length + "/" + this.maxApps + " program loaded: '" + this.myApps[0] + "'"
-        Type(this.out + "\n");
+        terminal.Type(this.out + "\n");
     }
 
     ReadFile(filename) {
         if(filename == undefined) {
-            Type("Call error: expected 1 argument [filename]");
+            terminal.Type("Call error: expected 1 argument [filename]");
             return;
         }
 
         if(this.myFiles.indexOf(filename) == -1) {
-            Type("File '" + filename + "' does not exist.\n");
+            terminal.Type("File '" + filename + "' does not exist.\n");
             return;
         }
         fetch("./TXT/" + filename)
@@ -35,18 +38,18 @@ class Filesys {
                 return response.text();
             })
             .then(data => {
-                Type(data);
+                terminal.Type(data);
             })
     }
 
     DownloadFile(filename) {
         if(filename == undefined) {
-            Type("Call error: expected 1 argument [filename]");
+            terminal.Type("Call error: expected 1 argument [filename]");
             return;
         }
 
         if(this.myFiles.length >= this.maxFiles) {
-            Type("Filesystem error: filesystem is full! (" + this.maxFiles +"/" + this.maxFiles +")");
+            terminal.Type("Filesystem error: filesystem is full! (" + this.maxFiles +"/" + this.maxFiles +")");
             return;
         }
 
@@ -54,51 +57,51 @@ class Filesys {
 
         if(this.myFiles.indexOf(filename) != -1) {
             this.out = "Filesystem error: file '" + filename + "' already exists";
-            Type(this.out);
+            terminal.Type(this.out);
             return;
         }
 
         if(this.ALLFILES.indexOf(filename) == -1) {
             this.out += "Server error: there is no file named '" + filename + "'";
-            Type(this.out);
+            terminal.Type(this.out);
             return;
         }
         this.out += "File found! Downloading...\n";
         
         this.myFiles[this.myFiles.length] = filename;
         this.out += "Download complete.";
-        Type(this.out);
+        terminal.Type(this.out);
     }
 
     DeleteFile(filename) {
         if(filename == undefined) {
-            Type("Call error: expected 1 argument [filename]");
+            terminal.Type("Call error: expected 1 argument [filename]");
             return;
         }
 
         if(this.myFiles.length <= 0) {
-            Type("Filesystem error: there are no local files\n");
+            terminal.Type("Filesystem error: there are no local files\n");
             return;
         }
 
         let toDelete = this.myFiles.indexOf(filename)
         if(toDelete == -1) {
-            Type("Filesystem error: there is no file named '" + filename + "'\n");
+            terminal.Type("Filesystem error: there is no file named '" + filename + "'\n");
             return;
         }
 
         this.myFiles.splice(toDelete, 1);
-        Type("'" + filename + "' deleted\n");
+        terminal.Type("'" + filename + "' deleted\n");
     }
 
     DownloadApp(appname) {
         if(appname == undefined) {
-            Type("Call error: expected 1 argument [appname]");
+            terminal.Type("Call error: expected 1 argument [appname]");
             return;
         }
 
         if(this.myApps.length >= this.maxApps) {
-            Type("Filesystem error: application already installed! (" + this.myApps[0] + ")");
+            terminal.Type("Filesystem error: application already installed! (" + this.myApps[0] + ")");
             return;
         }
 
@@ -106,36 +109,36 @@ class Filesys {
 
         if(this.myApps.indexOf(appname) != -1) {
             this.out = "Filesystem error: application '" + appname + "' already installed";
-            Type(this.out);
+            terminal.Type(this.out);
             return;
         }
 
         if(this.ALLAPPS.indexOf(appname) == -1) {
             this.out += "Server error: there is no application named '" + appname + "'";
-            Type(this.out);
+            terminal.Type(this.out);
             return;
         }
         this.out += "Application found! Downloading...\nInstalling...\n";
         
         this.myApps[this.myApps.length] = appname;
         this.out += "'" + appname + "' installed.";
-        Type(this.out);
+        terminal.Type(this.out);
     }
 
     DeleteApp(appname) {
         if(appname == undefined) {
-            Type("Call error: expected 1 argument [appname]");
+            terminal.Type("Call error: expected 1 argument [appname]");
             return;
         }
 
         let toDelete = this.myApps.indexOf(appname)
         if(toDelete == -1) {
-            Type("Filesystem error: there is no application named '" + appname + "'\n");
+            terminal.Type("Filesystem error: there is no application named '" + appname + "'\n");
             return;
         }
 
         this.myApps.splice(toDelete, 1);
-        Type("Uninstalling...\n'" + appname + "' successfully uninstalled\n");
+        terminal.Type("Uninstalling...\n'" + appname + "' successfully uninstalled\n");
     }
 }
 

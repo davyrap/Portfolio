@@ -6,4 +6,6 @@ class snake {
         this.tail = []
         this.apple = [20, 20];
     }
+
+    // quando vorrò controllare l'input con snake, chiamo terminal.stop()
 }

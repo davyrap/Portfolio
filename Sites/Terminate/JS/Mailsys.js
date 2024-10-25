@@ -12,7 +12,7 @@ class Mailsys {
             else out += "   ";
             out += mail + "\n";
         });
-        Type(out);
+        terminal.Type(out);
     }
 
     // ci saranno meno controlli perchè sarò io a chiamare questa funzione a momento debito
@@ -28,12 +28,12 @@ class Mailsys {
 
     ReadMail(mailname) {
         if(mailname == undefined) {
-            Type("Mail reading error: no mail name specified");
+            terminal.Type("Mail reading error: no mail name specified");
             return;
         }
 
         if(this.inbox.indexOf(mailname) == -1) {
-            Type("Mail reading error: '" + mailname + "' does not exist");
+            terminal.Type("Mail reading error: '" + mailname + "' does not exist");
             return;
         }
 
@@ -44,7 +44,7 @@ class Mailsys {
                 return response.text();
             })
             .then(data => {
-                Type(data);
+                terminal.Type(data);
             })
     }
 }
