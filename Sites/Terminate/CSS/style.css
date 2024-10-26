@@ -70,6 +70,10 @@ body {
     text-shadow: 0 0 4px var(--input-user-color);
 }
 
+#main-console {
+    width: 95%;     /* So the text wraps before the very end of the screen */
+}
+
 .snake-console {
     width: 60%;
     margin: 0;
@@ -83,7 +87,14 @@ body {
     width: 40%;
     position: fixed;
 
-    /* man I don't even forgive myself for these 2 lines */
+    /* man I'm feeling lazy ok? */
     top: 0;
     right: 0;
+}
+
+#title {
+    font-size: calc(var(--font-width) * 2);
+    text-align: center;
+    color: var(--input-user-color);
+    width: 100%;
 }

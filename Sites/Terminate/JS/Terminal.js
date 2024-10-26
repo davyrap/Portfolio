@@ -76,6 +76,7 @@ class Terminal {
     
         else if(event.key == "Backspace") {
             if(this.typedCommand.length == 0) return;
+            if(this.cursorIndex == this.typedCommand.length) return;
             this.typedCommand = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex - 1) + this.typedCommand.slice(this.typedCommand.length - this.cursorIndex);
         }
 
@@ -91,6 +92,8 @@ class Terminal {
         // echo the command on the terminal
         this.leftActiveInput.innerHTML = this.typedCommand.slice(0, this.typedCommand.length - this.cursorIndex);
         this.rightActiveInput.innerHTML = this.typedCommand.slice(this.typedCommand.length - this.cursorIndex);
+
+        this.out.scrollTop = this.out.scrollHeight;
     }
 
     Type(text) {

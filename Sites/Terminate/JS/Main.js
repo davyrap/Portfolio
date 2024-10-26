@@ -1,11 +1,14 @@
-const player = "Davide";
-const input = '<div class="input">' + player + '>&nbsp;<p class="input-user"></p><div class="cursor">&#9608;</div><p class="input-user"></div>';
+var input = "";
 
-const keysToPrevent = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End"];
+var active = null;
+
+var username = "";
 
 window.onload = function () {
-    terminal.Start();
-    // snake.Start();
+    document.getElementById("main-console").innerHTML += "\n<div class='input'>Insert your name: <p class='input-user'>" +
+        "</p><div class='cursor'>&#9608;</div></div>";
+    active = terminal.GetNextInput(0);
+    addEventListener("keydown", UsernameInput);
 }
 
 function SwitchCommand(str) {
@@ -70,4 +73,29 @@ function Imanoob() {
     result += "run [appname]:          run an installed app\n";
     result += "uninstall [appname]:    uninstall a local app\n";
     terminal.Type("\n" + result + "\n");
+}
+
+function UsernameInput(event) {    
+    if(!(event.key.length == 1 || event.key == "Backspace" || event.key == "Enter")) return;    
+
+    if(event.key == "Enter") {
+        input = '<div class="input">' + username + '> <p class="input-user"></p><div class="cursor">&#9608;</div><p class="input-user"></div>';
+        removeEventListener("keydown", UsernameInput);
+        PrintBoot();
+        terminal.HideCursor();
+        terminal.Start();
+        return;
+    }
+
+    if(event.key == "Backspace") {
+        username = username.slice(0, username.length - 1);
+        return;
+    }
+
+    username += event.key;
+    active.innerHTML = username;
+}
+
+function PrintBoot() {
+    document.getElementById("main-console").innerHTML += "\nCoded by davyrap\n\nEnter fullscreen for better immersion\n\nType 'imanoob' to see commands list";
 }
