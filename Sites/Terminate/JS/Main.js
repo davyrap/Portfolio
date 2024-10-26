@@ -2,7 +2,7 @@ var input = "";
 
 var active = null;
 
-var username = "";
+var player = "";
 
 window.onload = function () {
     document.getElementById("main-console").innerHTML += "\n<div class='input'>Insert your name: <p class='input-user'>" +
@@ -79,7 +79,7 @@ function UsernameInput(event) {
     if(!(event.key.length == 1 || event.key == "Backspace" || event.key == "Enter")) return;    
 
     if(event.key == "Enter") {
-        input = '<div class="input">' + username + '> <p class="input-user"></p><div class="cursor">&#9608;</div><p class="input-user"></div>';
+        input = '<div class="input">' + player + '> <p class="input-user"></p><div class="cursor">&#9608;</div><p class="input-user"></div>';
         removeEventListener("keydown", UsernameInput);
         PrintBoot();
         terminal.HideCursor();
@@ -88,12 +88,12 @@ function UsernameInput(event) {
     }
 
     if(event.key == "Backspace") {
-        username = username.slice(0, username.length - 1);
+        player = player.slice(0, player.length - 1);
         return;
     }
 
-    username += event.key;
-    active.innerHTML = username;
+    player += event.key;
+    active.innerHTML = player;
 }
 
 function PrintBoot() {
