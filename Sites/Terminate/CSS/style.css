@@ -13,6 +13,7 @@
 
 body {
     background-color: var(--background);
+    cursor: none;
 }
 
 .console {
@@ -29,7 +30,7 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 
-    cursor: none;
+    /* cursor: none; */
 
     white-space: pre-wrap;   /* La vita: formatta \n e \t */
 
