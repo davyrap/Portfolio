@@ -25,7 +25,7 @@ class Terminal {
     
         if(event.key == "Enter") {
             this.HideCursor();
-            if(this.typedCommand === "") {
+            if(this.typedCommand == "") {
                 this.CreateNextInput();
                 return;
             }
@@ -121,12 +121,11 @@ class Terminal {
     }
     
     CreateNextInput() {
-        if(this.typedCommand.toLowerCase() != "cleanup" && this.typedCommand.toLowerCase != "clup") {
+        // if(this.typedCommand.toLowerCase() != "cleanup" && this.typedCommand.toLowerCase != "clup") {
             this.out.innerHTML += input;
             this.leftActiveInput = this.GetNextInput(1);
             this.rightActiveInput = this.GetNextInput(0);
             this.out.scrollTop = this.out.scrollHeight;    
-        }
     }
 
     IsInputValid(input) {
